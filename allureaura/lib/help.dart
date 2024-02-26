@@ -162,3 +162,60 @@ class _HomeinitialState extends State<Homeinitial> {
     );
   }
 }
+
+// register ko catch ko error handling
+// catch (e) {
+//       String error = e.toString();
+//       print(error);
+
+//       if (error ==
+//           "ClientException: {url: http://10.0.2.2:3005/registration, isAbort: false, statusCode: 400, response: {code: 400, message: Failed to create record., data: {username: {code: validation_invalid_username, message: The username is invalid or already in use.}}}, originalError: null}") {
+//         return showDialog(
+//           context: context,
+//           builder: (BuildContext context) {
+//             return AlertDialog(
+//               content: Text('This username is already in use.'),
+//               actions: [
+//                 TextButton(
+//                   onPressed: () => Navigator.of(context).pop(false),
+//                   child: Text('Ok'),
+//                 ),
+//               ],
+//             );
+//           },
+//         );
+//       } else if (error ==
+//           "ClientException: {url: http://10.0.2.2:3005/registration, isAbort: false, statusCode: 400, response: {code: 400, message: Failed to create record., data: {email: {code: validation_invalid_email, message: The email is invalid or already in use.}}}, originalError: null}") {
+//         return showDialog(
+//           context: context,
+//           builder: (BuildContext context) {
+//             return AlertDialog(
+//               content: Text('This username is already in use.'),
+//               actions: [
+//                 TextButton(
+//                   onPressed: () => Navigator.of(context).pop(false),
+//                   child: Text('Ok'),
+//                 ),
+//               ],
+//             );
+//           },
+//         );
+//       }
+//       if (error ==
+//           "ClientException: {url: http://10.0.2.2:3005/registration, isAbort: false, statusCode: 400, response: {code: 400, message: Failed to create record., data: {phonenumber: {code: validation_invalid_phonenumber, message: The phone number is invalid or already in use.}}}, originalError: null}") {
+//         return showDialog(
+//           context: context,
+//           builder: (BuildContext context) {
+//             return AlertDialog(
+//               content: Text('This username is already in use.'),
+//               actions: [
+//                 TextButton(
+//                   onPressed: () => Navigator.of(context).pop(false),
+//                   child: Text('Ok'),
+//                 ),
+//               ],
+//             );
+//           },
+//         );
+//       }
+//     }

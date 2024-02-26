@@ -32,8 +32,9 @@ const userSchema = new Schema({
 userSchema.pre('save', async function(){
     try{
         var user = this;
-        const salt = await(bcrypt.genSalt(10));//initiaizing salt to encrypt password
-        const hashpass = await bcrypt.hash(user.password,salt);//storing incrypted password in hasdpass
+        //Initializing salt for incrypting password and stroing in hashpass
+        const salt = await(bcrypt.genSalt(10));
+        const hashpass = await bcrypt.hash(user.password,salt);
 
             user.password = hashpass;
 
@@ -43,9 +44,10 @@ userSchema.pre('save', async function(){
     }
 })
 
-userSchema.method.comparePassword = async function(password){
+userSchema.methods.passwordComparison = async function(userPassword){
     try{
-        const isMatch = await bcrypt.compare(pass)
+        const isMatch = await bcrypt.compare(user.password, this.password);
+        return isMatch;
     }
     catch(error){
         throw error;

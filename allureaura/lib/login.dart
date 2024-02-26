@@ -1,4 +1,8 @@
+import 'package:allureaura/config.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 import 'register.dart';
 
@@ -13,37 +17,98 @@ class _LoginState extends State<Login> {
   TextEditingController userNameL = TextEditingController();
   TextEditingController passwordL = TextEditingController();
   bool notvalid = false;
+  late SharedPreferences prefer;
 
-  // void registerUser() async {
-  //   try {
-  //     if (userName.text.isNotEmpty && password.text.isNotEmpty) {
-  //       var regBody = {"username": userName.text, "password": password.text};
+  @override
+  void initState() {
+    super.initState();
+    initSharedPrefer();
+  }
 
-  //       var response = await http.post(
-  //         Uri.parse(),
-  //         headers: {"Content-Type": "application/json"},
-  //         body: jsonEncode(regBody),
-  //       );
+  void initSharedPrefer() async {
+    prefer = await SharedPreferences.getInstance();
+  }
 
-  //       var jsonResponse = jsonDecode(response.body);
-  //       debugPrint(jsonResponse['status'].toString());
+  void loginUser() async {
+    try {
+      if (userNameL.text.isNotEmpty && passwordL.text.isNotEmpty) {
+        var regBody = {"username": userNameL.text, "password": passwordL.text};
+        print("here");
+        var response = await http.post(
+          Uri.parse(login),
+          headers: {"Content-Type": "application/json"},
+          body: jsonEncode(regBody),
+        );
+        print("here here here");
+        var jsonResponse = jsonDecode(response.body);
+        debugPrint(jsonResponse['status'].toString());
 
-  //       if (jsonResponse['status']) {
-  //         Navigator.push(
-  //             context, MaterialPageRoute(builder: (context) => Login()));
-  //       } else {
-  //         print("Something Went Wrong");
-  //       }
-  //     } else {
-  //       debugPrint("Not working!");
-  //       setState(() {
-  //         notvalid = true;
-  //       });
-  //     }
-  //   } catch (e) {
-  //     debugPrint("Error during registration: $e");
-  //   }
-  // }
+        if (jsonResponse['status']) {
+          var myToken = jsonResponse['token'];
+          prefer.setString('token', myToken);
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Home(token: myToken)));
+        } else {
+          print("Something Went Wrong");
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Invalid Input!'),
+                content: Text('User not registered.'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
+          setState(() {
+            notvalid = true;
+          });
+        }
+      } else {
+        debugPrint("Not working!");
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Invalid Input!'),
+              content: Text('Please enter correct details.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+        setState(() {
+          notvalid = true;
+        });
+      }
+    } catch (e) {
+      debugPrint("Error during logging in: $e");
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Invalid Input!!!'),
+            content: Text('Please enter correct details.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +176,7 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: TextFormField(
+                          controller: userNameL,
                           decoration: InputDecoration(
                             hintText: "Username or Email",
                             hintStyle: TextStyle(
@@ -144,6 +210,7 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: TextFormField(
+                          controller: passwordL,
                           decoration: InputDecoration(
                             hintText: "Password",
                             hintStyle: TextStyle(
@@ -192,10 +259,7 @@ class _LoginState extends State<Login> {
                           ),
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => Home()),
-                              );
+                              loginUser();
                             },
                             child: Center(
                               child: Text(

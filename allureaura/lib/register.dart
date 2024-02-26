@@ -43,9 +43,49 @@ class _RegisterState extends State<Register> {
         var jsonResponse = jsonDecode(response.body);
         debugPrint(jsonResponse['status'].toString());
 
-        if (jsonResponse['status']) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Login()));
+        if (jsonResponse != null) {
+          if (jsonResponse.containsKey('status')) {
+            if (jsonResponse['status'] is bool) {
+              if (jsonResponse['status']) {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
+              } else {
+                print("Invalid Input!!!");
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Invalid Input!!'),
+                      content:
+                          Text('The values provided is already registered.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
+            }
+          }
+        } else if (jsonResponse['!status']) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Email already exists'),
+                content: Text('The email is already registered.'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            },
+          );
         } else {
           print("Something Went Wrong");
         }
@@ -56,7 +96,90 @@ class _RegisterState extends State<Register> {
         });
       }
     } catch (e) {
-      debugPrint("Error during registration: $e");
+      String error = e.toString();
+      print(error);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('this is error'),
+            content: Text(error),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+
+      // if (error.contains("validation_invalid_username")) {
+      //   showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //         title: Text('Username already exists'),
+      //         content: Text(
+      //             'The username is already in use. Please choose a different username.'),
+      //         actions: [
+      //           TextButton(
+      //             onPressed: () => Navigator.of(context).pop(),
+      //             child: Text('OK'),
+      //           ),
+      //         ],
+      //       );
+      //     },
+      //   );
+      // } else if (error.contains("validation_invalid_email")) {
+      //   showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //         title: Text('Email already exists'),
+      //         content: Text('The email is already registered.'),
+      //         actions: [
+      //           TextButton(
+      //             onPressed: () => Navigator.of(context).pop(),
+      //             child: Text('OK'),
+      //           ),
+      //         ],
+      //       );
+      //     },
+      //   );
+      // } else if (error.contains("validation_invalid_phonenumber")) {
+      //   showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //         title: Text('Phone number already exists'),
+      //         content: Text('The number is already registered.'),
+      //         actions: [
+      //           TextButton(
+      //             onPressed: () => Navigator.of(context).pop(),
+      //             child: Text('OK'),
+      //           ),
+      //         ],
+      //       );
+      //     },
+      //   );
+      // } else {
+      //   showDialog(
+      //     context: context,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //         title: Text('Registration Error'),
+      //         content: Text('Something went wrong. Please try again later.'),
+      //         actions: [
+      //           TextButton(
+      //             onPressed: () => Navigator.of(context).pop(),
+      //             child: Text('OK'),
+      //           ),
+      //         ],
+      //       );
+      //     },
+      //   );
+      // }
     }
   }
 

@@ -50,7 +50,7 @@ class _CoursesState extends State<Courses> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bridal Makeup\nPrice: 50000\n',
+                                'Makeup\nPrice: 10000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -84,7 +84,7 @@ class _CoursesState extends State<Courses> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Party Makeup\nPrice: 10000\n',
+                                'Full course\nPrice: 20000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -117,7 +117,7 @@ class _CoursesState extends State<Courses> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Simple Makeup\nPrice: 5000\n',
+                                'Hair\nPrice: 8000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),

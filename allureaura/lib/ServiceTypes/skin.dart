@@ -49,7 +49,7 @@ class _SkinState extends State<Skin> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bridal Makeup\nPrice: 50000\n',
+                                'Bridal Pack\nPrice: 20000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -82,7 +82,7 @@ class _SkinState extends State<Skin> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Party Makeup\nPrice: 10000\n',
+                                'Facial\nPrice: 1000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -115,7 +115,7 @@ class _SkinState extends State<Skin> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Simple Makeup\nPrice: 5000\n',
+                                'Cleansing\nPrice: 500\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),

@@ -49,7 +49,7 @@ class _NailState extends State<Nail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bridal Makeup\nPrice: 50000\n',
+                                'Gel Nail Extension\nPrice: 50000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -82,7 +82,7 @@ class _NailState extends State<Nail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Party Makeup\nPrice: 10000\n',
+                                'Normal Nail Extension\nPrice: 1000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -115,7 +115,7 @@ class _NailState extends State<Nail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Simple Makeup\nPrice: 5000\n',
+                                'Nail Art\nPrice: 1000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),

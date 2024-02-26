@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 import './ServiceTypes/Makeup.dart';
 import './ServiceTypes/hair.dart';
 import './ServiceTypes/nail.dart';
@@ -8,14 +9,24 @@ import './ServiceTypes/courses.dart';
 import 'buttommenu.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final token;
+  const Home({@required this.token, Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
+  late String username;
   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+
+  //   username = jwtDecodedToken['username'];
+  // }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -40,6 +51,7 @@ class _HomeState extends State<Home> {
                     color: Color(0xFF7743DB),
                   ),
                 ),
+
                 SizedBox(height: 50.0),
                 Text(
                   'Please, choose your desired option.',

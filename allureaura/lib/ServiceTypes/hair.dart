@@ -49,7 +49,7 @@ class _HairState extends State<Hair> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Bridal Makeup\nPrice: 50000\n',
+                                'Hair coloring\nPrice: 3000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -82,7 +82,7 @@ class _HairState extends State<Hair> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Party Makeup\nPrice: 10000\n',
+                                'Hair Treatment\nPrice: 10000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
@@ -115,7 +115,7 @@ class _HairState extends State<Hair> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Simple Makeup\nPrice: 5000\n',
+                                'Hair Stylling\nPrice: 2000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
