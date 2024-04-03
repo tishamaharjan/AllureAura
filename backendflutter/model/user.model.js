@@ -31,12 +31,12 @@ const userSchema = new Schema({
 
 userSchema.pre('save', async function(){
     try{
-        var user = this;
+        
         //Initializing salt for incrypting password and stroing in hashpass
         const salt = await(bcrypt.genSalt(10));
-        const hashpass = await bcrypt.hash(user.password,salt);
+        const hashedpass = await bcrypt.hash(this.password,salt);
 
-            user.password = hashpass;
+            this.password = hashedpass;
 
     }
     catch (error){
@@ -44,14 +44,24 @@ userSchema.pre('save', async function(){
     }
 })
 
+
 userSchema.methods.passwordComparison = async function(userPassword){
     try{
-        const isMatch = await bcrypt.compare(user.password, this.password);
-        return isMatch;
+        console.log("Stored Hashed Password:", this.password);
+        console.log("Newly Entered Password:", userPassword);
+
+        const  isMatch = await bcrypt.compare(userPassword, this.password);
+        console.log("Passwords Match:", isMatch);
+        
+        return isMatch; 
+       
+
     }
     catch(error){
+        console.error('Error comparing passwords:', error);
         throw error;
     }
+    
 }
 
 const userModel = db.model('user',userSchema); // to create userschema(Schema) in databae

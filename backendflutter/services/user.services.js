@@ -19,16 +19,14 @@ class userService{
            
             return user;  
 
-            const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) {
-                return null; 
-            }
+          
         }
 
         catch(err){
             throw err;
         }
     }
+    
 
     static async generateToken(tokenData, secretKey, jwt_time){
         return jwt.sign(tokenData,secretKey,{expiresIn:jwt_time});

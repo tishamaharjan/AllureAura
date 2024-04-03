@@ -55,7 +55,7 @@ class _LoginState extends State<Login> {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: Text('Invalid Input!'),
-                content: Text('User not registered.'),
+                content: Text('User not registered or incorrect password.'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),

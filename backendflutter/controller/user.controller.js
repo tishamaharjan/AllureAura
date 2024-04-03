@@ -24,25 +24,29 @@ exports.login = async(req,res,next) => {
         const {username, password} = req.body;
 
         const user = await userService.loginUser(username);
+        
 
         if (!user){
             return res.status(404).json({ status: false, message: "User not registered." });
             
         }
         
+
+        const pwMatch = await user.passwordComparison(password);
         
-        const match = user.passwordComparison(password);
-
-        if (match === false){
-            
+        if (pwMatch == false){
             return res.status(401).json({ status: false, message: "Invalid password." });
+            
+            
         }
+        else{
+            let tokenData = {_id:user._id,username:user.username, email: user.email,phonenumber:user.phonenumber};
 
-        let tokenData = {_id:user._id,username:user.username, email: user.email,phonenumber:user.phonenumber};
+            const token = await userService.generateToken(tokenData, "secretKey", '1hr')
 
-        const token = await userService.generateToken(tokenData, "secretKey", '1hr')
-
-        res.status(200).json({status:true, token:token})
+            res.status(200).json({status:true, token:token})
+           
+        }
     }
 
     catch(error) {
