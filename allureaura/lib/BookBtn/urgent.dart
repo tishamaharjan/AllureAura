@@ -3,13 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Urgent extends StatefulWidget {
-  const Urgent({super.key});
+  final String choosedServiceType;
+  final String choosedServicePrice;
+  final String service;
+
+  const Urgent({
+    required this.choosedServiceType,
+    required this.choosedServicePrice,
+    required this.service,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Urgent> createState() => _UrgentState();
 }
 
 class _UrgentState extends State<Urgent> {
+  String UrgentBook = "UrgentBook";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,6 +50,9 @@ class _UrgentState extends State<Urgent> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
+                        setState(() {
+                          UrgentBook = 'Yes';
+                        });
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Date()));
                       },
@@ -59,6 +72,9 @@ class _UrgentState extends State<Urgent> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
+                        setState(() {
+                          UrgentBook = 'No';
+                        });
                         Navigator.pushReplacement(context,
                             MaterialPageRoute(builder: (context) => Date()));
                       },

@@ -1,17 +1,24 @@
 import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Makeup extends StatefulWidget {
-  const Makeup({super.key});
+  final Appointment appointment;
+  const Makeup({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Makeup> createState() => _MakeupState();
 }
 
 class _MakeupState extends State<Makeup> {
+  String ChoosedServiceType = 'ChoosedServiceType';
+  String ChoosedServicePrice = 'ChoosedServicePrice';
+
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,10 +62,19 @@ class _MakeupState extends State<Makeup> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Bridal Makeup';
+                                    ChoosedServicePrice = '50000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -88,10 +104,19 @@ class _MakeupState extends State<Makeup> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Party Makeup';
+                                    ChoosedServicePrice = '10000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -121,10 +146,19 @@ class _MakeupState extends State<Makeup> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Simple Makeup';
+                                    ChoosedServicePrice = '5000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',

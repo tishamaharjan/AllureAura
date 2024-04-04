@@ -3,15 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Book extends StatefulWidget {
-  const Book({super.key});
+  final String choosedServiceType;
+  final String choosedServicePrice;
+
+  const Book({
+    required this.choosedServiceType,
+    required this.choosedServicePrice,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Book> createState() => _BookState();
 }
 
 class _BookState extends State<Book> {
+  String Service = "Service";
   @override
   Widget build(BuildContext context) {
+    print('choosedServiceType: ${widget.choosedServiceType}');
+    print('choosedServicePrice: ${widget.choosedServicePrice}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -40,8 +50,19 @@ class _BookState extends State<Book> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Urgent()));
+                        setState(() {
+                          Service = 'HomeService';
+                        });
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Urgent(
+                                      choosedServiceType:
+                                          widget.choosedServiceType,
+                                      choosedServicePrice:
+                                          widget.choosedServicePrice,
+                                      service: Service,
+                                    )));
                       },
                       child: Text(
                         'Home Service',
@@ -59,8 +80,19 @@ class _BookState extends State<Book> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Urgent()));
+                        setState(() {
+                          Service = 'InParlour';
+                        });
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Urgent(
+                                      choosedServiceType:
+                                          widget.choosedServiceType,
+                                      choosedServicePrice:
+                                          widget.choosedServicePrice,
+                                      service: Service,
+                                    )));
                       },
                       child: Text(
                         'In Parlour',

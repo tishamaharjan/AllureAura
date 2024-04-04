@@ -1,9 +1,11 @@
-import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/BookBtn/payment.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Courses extends StatefulWidget {
-  const Courses({super.key});
+  final Appointment appointment;
+  const Courses({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Courses> createState() => _CoursesState();
@@ -13,6 +15,7 @@ class _CoursesState extends State<Courses> {
   int CoursePrice = 0;
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -60,7 +63,7 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => PayChoose()));
                                 },
                                 child: Text(
                                   'Book',
@@ -93,7 +96,7 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => PayChoose()));
                                 },
                                 child: Text(
                                   'Book',
@@ -126,7 +129,7 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => PayChoose()));
                                 },
                                 child: Text(
                                   'Book',

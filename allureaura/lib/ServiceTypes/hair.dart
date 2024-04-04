@@ -1,17 +1,23 @@
 import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Hair extends StatefulWidget {
-  const Hair({super.key});
+  final Appointment appointment;
+  const Hair({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Hair> createState() => _HairState();
 }
 
 class _HairState extends State<Hair> {
+  String ChoosedServiceType = 'ChoosedServiceType';
+  String ChoosedServicePrice = 'ChoosedServicePrice';
+
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,10 +61,19 @@ class _HairState extends State<Hair> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'HairColoring';
+                                    ChoosedServicePrice = '3000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -88,10 +103,19 @@ class _HairState extends State<Hair> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'HairTreatment';
+                                    ChoosedServicePrice = '10000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -115,16 +139,25 @@ class _HairState extends State<Hair> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Hair Stylling\nPrice: 2000\n',
+                                'Hair Styling\nPrice: 2000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'HairStyling';
+                                    ChoosedServicePrice = '2000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',

@@ -1,3 +1,5 @@
+const Cookie = require('../sessions/cookie');
+// const expsession = require("express-session");
 const userService = require("../services/user.services");
 
 exports.register = async(req,res,next) => {
@@ -43,13 +45,21 @@ exports.login = async(req,res,next) => {
             let tokenData = {_id:user._id,username:user.username, email: user.email,phonenumber:user.phonenumber};
 
             const token = await userService.generateToken(tokenData, "secretKey", '1hr')
+            if (!token) {
+                console.log("Error generating token");
+                return res.status(500).json({ status: false, message: "Error generating token." });
+            }
 
-            res.status(200).json({status:true, token:token})
-           
+            Cookie.setCookie(res, 'cookieToken', token, {maxAge: 3600000,httpOnly:true});
+            console.log("Cookie value:", token);
+            res.status(200).json({status:true, message: "Login successful", token:token})
+               
         }
+        
     }
 
     catch(error) {
-        throw error
+        console.error('Error:', error);
+        return res.status(500).json({ status: false, message: "Internal Server Error." });
     }
 }

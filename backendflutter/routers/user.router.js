@@ -3,6 +3,6 @@ const userController = require("../controller/user.controller");
 
 router.post('/registration',userController.register);
 router.post('/login',userController.login);
-//registration and login is an API
+// API of registration and login
 
 module.exports = router;

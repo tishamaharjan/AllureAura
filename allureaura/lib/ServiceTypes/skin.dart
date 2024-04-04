@@ -1,17 +1,23 @@
 import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Skin extends StatefulWidget {
-  const Skin({super.key});
+  final Appointment appointment;
+  const Skin({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Skin> createState() => _SkinState();
 }
 
 class _SkinState extends State<Skin> {
+  String ChoosedServiceType = 'ChoosedSkin';
+  String ChoosedServicePrice = 'ChoosedSkinPrice';
+
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,10 +61,19 @@ class _SkinState extends State<Skin> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'NailArt';
+                                    ChoosedServicePrice = '1000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -91,7 +106,12 @@ class _SkinState extends State<Skin> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -124,7 +144,12 @@ class _SkinState extends State<Skin> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',

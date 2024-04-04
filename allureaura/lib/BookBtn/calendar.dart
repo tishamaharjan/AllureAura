@@ -11,8 +11,8 @@ class Date extends StatefulWidget {
 }
 
 class _DateState extends State<Date> {
-  late DateTime _selectedDate;
-  late DateTime _calDate;
+  late DateTime selectedDate;
+  late DateTime calDate;
 
   // Future<void> _selectDate(BuildContext context) async {
   //   final DateTime? selected = await showDatePicker(
@@ -23,7 +23,7 @@ class _DateState extends State<Date> {
   //   );
   //   if (selected != null) {
   //     setState(() {
-  //       _selectedDate = selected;
+  //       selectedDate = selected;
   //     });
   //   }
   // }
@@ -31,8 +31,8 @@ class _DateState extends State<Date> {
   @override
   void initState() {
     super.initState();
-    _selectedDate = DateTime.now();
-    _calDate = DateTime.now();
+    selectedDate = DateTime.now();
+    calDate = DateTime.now();
   }
 
   @override
@@ -61,16 +61,16 @@ class _DateState extends State<Date> {
                   ),
                   SizedBox(height: 50.0),
                   TableCalendar(
-                    focusedDay: _calDate,
+                    focusedDay: calDate,
                     firstDay: DateTime.now(),
                     lastDay: DateTime(2100),
                     selectedDayPredicate: (day) {
-                      return isSameDay(_selectedDate, day);
+                      return isSameDay(selectedDate, day);
                     },
                     onDaySelected: (selectedDay, focusedDay) {
                       setState(() {
-                        _selectedDate = selectedDay;
-                        _calDate = focusedDay;
+                        selectedDate = selectedDay;
+                        calDate = focusedDay;
                       });
                     },
                   ),

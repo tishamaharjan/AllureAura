@@ -1,6 +1,7 @@
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
-import './ServiceTypes/Makeup.dart';
+// import 'package:jwt_decoder/jwt_decoder.dart';
+import './ServiceTypes/makeup.dart';
 import './ServiceTypes/hair.dart';
 import './ServiceTypes/nail.dart';
 import './ServiceTypes/skin.dart';
@@ -18,6 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String username;
+  String ChoosedService = 'ChoosedService';
   @override
   // void initState() {
   //   // TODO: implement initState
@@ -71,178 +73,132 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                //Creating an instance
+                                Appointment appointment = Appointment(
+                                  choosedService: 'Makeup',
+                                );
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Makeup()));
+                                        builder: (context) =>
+                                            Makeup(appointment: appointment)));
                               },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Make Up',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
+                              child: ServiceOptions(SerName: 'Make Up'),
                             ),
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Hair()));
-                              },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Hair Styles',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
+                                onTap: () {
+                                  Appointment appointment = Appointment(
+                                    choosedService: 'Hair',
+                                  );
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Hair(appointment: appointment)));
+                                },
+                                child: ServiceOptions(SerName: 'Hair')),
                           ],
                         ),
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Nail()));
-                              },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Nail Art and Extensions',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
+                                onTap: () {
+                                  Appointment appointment = Appointment(
+                                    choosedService: 'Nail',
+                                  );
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Nail(appointment: appointment)));
+                                },
+                                child: ServiceOptions(SerName: 'Nail')),
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Skin()));
-                              },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Skin Care',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
+                                onTap: () {
+                                  Appointment appointment = Appointment(
+                                    choosedService: 'Skin',
+                                  );
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Skin(appointment: appointment)));
+                                },
+                                child: ServiceOptions(SerName: 'Skin')),
                           ],
                         ),
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ManiPedi()));
-                              },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Manicure/Pedicure',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
+                                onTap: () {
+                                  Appointment appointment = Appointment(
+                                    choosedService: 'ManiPedi',
+                                  );
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ManiPedi(
+                                              appointment: appointment)));
+                                },
+                                child: ServiceOptions(SerName: 'ManiPedi')),
                             GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Courses()));
-                              },
-                              child: Container(
-                                color: Color(0xFFD0A2F7),
-                                margin: EdgeInsets.all(20.0),
-                                padding: EdgeInsets.all(10.0),
-                                height: 100.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                alignment: Alignment.center,
-                                child: Center(
-                                    child: Text(
-                                  'Courses',
-                                  style: TextStyle(
-                                      color: Color(0xFF7743DB),
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ),
+                                onTap: () {
+                                  Appointment appointment = Appointment(
+                                    choosedService: 'Courses',
+                                  );
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Courses(
+                                              appointment: appointment)));
+                                },
+                                child: ServiceOptions(SerName: 'Courses')),
                           ],
                         ),
                       ],
                     )),
-
-                // Add more widgets as needed
-
-                // ElevatedButton(
-                //   onPressed: () {
-                //     Navigator.pushReplacement(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => const Login()),
-                //     );
-                //   },
-                //   child: Text('Logout'),
-                // ),
               ],
             ),
           ),
         ),
         bottomNavigationBar: BottomMenu(activeIndex: 0),
       ),
+    );
+  }
+}
+
+//--- Widget for ServiceOptions ---//
+
+class ServiceOptions extends StatefulWidget {
+  final String SerName;
+
+  const ServiceOptions({
+    required this.SerName,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<ServiceOptions> createState() => _ServiceOptionsState();
+}
+
+class _ServiceOptionsState extends State<ServiceOptions> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color(0xFFD0A2F7),
+      margin: EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(10.0),
+      height: 100.0,
+      width: MediaQuery.of(context).size.width * 0.3,
+      alignment: Alignment.center,
+      child: Center(
+          child: Text(
+        widget.SerName,
+        style: TextStyle(
+            color: Color(0xFF7743DB),
+            fontSize: 18,
+            fontWeight: FontWeight.bold),
+      )),
     );
   }
 }

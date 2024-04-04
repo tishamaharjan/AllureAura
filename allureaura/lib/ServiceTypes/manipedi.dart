@@ -1,17 +1,22 @@
 import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class ManiPedi extends StatefulWidget {
-  const ManiPedi({super.key});
+  final Appointment appointment;
+  const ManiPedi({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<ManiPedi> createState() => _ManiPediState();
 }
 
 class _ManiPediState extends State<ManiPedi> {
+  String ChoosedServiceType = 'ChoosedMani';
+  String ChoosedServicePrice = 'ChoosedManiPrice';
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,10 +60,19 @@ class _ManiPediState extends State<ManiPedi> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Hand and Toe';
+                                    ChoosedServicePrice = '5000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -88,10 +102,19 @@ class _ManiPediState extends State<ManiPedi> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Hand';
+                                    ChoosedServicePrice = '2000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -121,10 +144,19 @@ class _ManiPediState extends State<ManiPedi> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'Toe';
+                                    ChoosedServicePrice = '3000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',

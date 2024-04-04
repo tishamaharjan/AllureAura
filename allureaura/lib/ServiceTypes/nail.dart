@@ -1,17 +1,22 @@
 import 'package:allureaura/BookBtn/book.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Nail extends StatefulWidget {
-  const Nail({super.key});
+  final Appointment appointment;
+  const Nail({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Nail> createState() => _NailState();
 }
 
 class _NailState extends State<Nail> {
+  String ChoosedServiceType = 'ChoosedServiceType';
+  String ChoosedServicePrice = 'ChoosedServicePrice';
   @override
   Widget build(BuildContext context) {
+    print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -55,10 +60,19 @@ class _NailState extends State<Nail> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'GelNailExtension';
+                                    ChoosedServicePrice = '50000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -82,16 +96,25 @@ class _NailState extends State<Nail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Normal Nail Extension\nPrice: 1000\n',
+                                'Normal Nail Extension\nPrice: 2000\n',
                                 style: TextStyle(
                                     fontSize: 18, color: Color(0xFF591D84)),
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'NormalNailExtension';
+                                    ChoosedServicePrice = '2000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -121,10 +144,19 @@ class _NailState extends State<Nail> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedServiceType = 'NailArt';
+                                    ChoosedServicePrice = '1000';
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Book()));
+                                          builder: (context) => Book(
+                                                choosedServiceType:
+                                                    ChoosedServiceType,
+                                                choosedServicePrice:
+                                                    ChoosedServicePrice,
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
