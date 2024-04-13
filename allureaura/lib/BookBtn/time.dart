@@ -1,19 +1,52 @@
-import 'package:allureaura/BookBtn/payment.dart';
+import 'package:allureaura/appointmentDetails.dart';
+import 'package:allureaura/invoice.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Time extends StatefulWidget {
-  const Time({super.key});
+  final Appointment appointment;
+  const Time({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Time> createState() => _TimeState();
 }
 
 class _TimeState extends State<Time> {
+  late String ChoosedService;
+  late String ChoosedServiceType;
+  late int ChoosedServicePrice;
+  late String Service;
+  late int HomeServicePrice;
+  late String UrgentBook;
+  late int UrgentBookPrice;
+  late DateTime SelectedDate;
+  late DateTime CalDate;
   String ChoosedTime = 'Choosed_Time';
 
   @override
+  void initState() {
+    super.initState();
+    ChoosedService = widget.appointment.choosedService;
+    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
+    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    Service = widget.appointment.service ?? '';
+    HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
+    UrgentBook = widget.appointment.urgentBook ?? '';
+    UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
+    SelectedDate = widget.appointment.selectedDate ?? DateTime.now();
+    CalDate = widget.appointment.calDate ?? DateTime.now();
+  }
+
   Widget build(BuildContext context) {
+    print('Time choosedServiceType: ${widget.appointment.choosedServiceType}');
+    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
+    print('Urgent Book: ${widget.appointment.urgentBook}');
+    print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
+    print('choosedService: ${widget.appointment.choosedService}');
+    print('Service: ${widget.appointment.service}');
+    print('Home Service Price: ${widget.appointment.homeServicePrice}');
+    print('Selected Date: ${widget.appointment.selectedDate}');
+    print('Calender Date: ${widget.appointment.calDate}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -47,7 +80,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -74,7 +121,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -101,7 +162,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -128,7 +203,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -155,7 +244,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -182,7 +285,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),
@@ -209,7 +326,21 @@ class _TimeState extends State<Time> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PayChoose()));
+                                  builder: (context) => Invoice(
+                                        appointment: Appointment(
+                                            choosedService: ChoosedService,
+                                            choosedServiceType:
+                                                ChoosedServiceType,
+                                            choosedServicePrice:
+                                                ChoosedServicePrice,
+                                            service: Service,
+                                            homeServicePrice: HomeServicePrice,
+                                            urgentBook: UrgentBook,
+                                            urgentBookPrice: UrgentBookPrice,
+                                            selectedDate: SelectedDate,
+                                            calDate: CalDate,
+                                            choosedTime: ChoosedTime),
+                                      )));
                         },
                         child: Container(
                           color: Color(0xFFD0A2F7),

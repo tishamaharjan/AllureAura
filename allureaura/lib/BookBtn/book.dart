@@ -1,27 +1,35 @@
 import 'package:allureaura/BookBtn/urgent.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
 class Book extends StatefulWidget {
-  final String choosedServiceType;
-  final String choosedServicePrice;
-
-  const Book({
-    required this.choosedServiceType,
-    required this.choosedServicePrice,
-    Key? key,
-  }) : super(key: key);
+  final Appointment appointment;
+  const Book({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Book> createState() => _BookState();
 }
 
 class _BookState extends State<Book> {
-  String Service = "Service";
+  late String ChoosedService;
+  late String ChoosedServiceType;
+  late int ChoosedServicePrice;
+  String Service = 'Service';
+  int HomeServicePrice = 0;
+
   @override
+  void initState() {
+    super.initState();
+    ChoosedService = widget.appointment.choosedService;
+    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
+    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+  }
+
   Widget build(BuildContext context) {
-    print('choosedServiceType: ${widget.choosedServiceType}');
-    print('choosedServicePrice: ${widget.choosedServicePrice}');
+    print('Book choosedServiceType: ${widget.appointment.choosedServiceType}');
+    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
+    print('choosedService: ${widget.appointment.choosedService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -52,16 +60,20 @@ class _BookState extends State<Book> {
                       onPressed: () {
                         setState(() {
                           Service = 'HomeService';
+                          HomeServicePrice = 500;
                         });
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Urgent(
-                                      choosedServiceType:
-                                          widget.choosedServiceType,
-                                      choosedServicePrice:
-                                          widget.choosedServicePrice,
-                                      service: Service,
+                                      appointment: Appointment(
+                                          choosedService: ChoosedService,
+                                          choosedServiceType:
+                                              ChoosedServiceType,
+                                          choosedServicePrice:
+                                              ChoosedServicePrice,
+                                          service: Service,
+                                          homeServicePrice: HomeServicePrice),
                                     )));
                       },
                       child: Text(
@@ -82,16 +94,20 @@ class _BookState extends State<Book> {
                       onPressed: () {
                         setState(() {
                           Service = 'InParlour';
+                          HomeServicePrice = 0;
                         });
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Urgent(
-                                      choosedServiceType:
-                                          widget.choosedServiceType,
-                                      choosedServicePrice:
-                                          widget.choosedServicePrice,
-                                      service: Service,
+                                      appointment: Appointment(
+                                          choosedService: ChoosedService,
+                                          choosedServiceType:
+                                              ChoosedServiceType,
+                                          choosedServicePrice:
+                                              ChoosedServicePrice,
+                                          service: Service,
+                                          homeServicePrice: HomeServicePrice),
                                     )));
                       },
                       child: Text(

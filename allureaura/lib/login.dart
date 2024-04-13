@@ -13,6 +13,10 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
+abstract class LoginStateInterface {
+  String getUsername();
+}
+
 class _LoginState extends State<Login> {
   TextEditingController userNameL = TextEditingController();
   TextEditingController passwordL = TextEditingController();
@@ -23,6 +27,10 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     initSharedPrefer();
+  }
+
+  String getUsername() {
+    return userNameL.text;
   }
 
   void initSharedPrefer() async {
@@ -45,6 +53,7 @@ class _LoginState extends State<Login> {
 
         if (jsonResponse['status']) {
           var myToken = jsonResponse['token'];
+
           prefer.setString('token', myToken);
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => Home(token: myToken)));

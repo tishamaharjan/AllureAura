@@ -12,10 +12,16 @@ class Makeup extends StatefulWidget {
 }
 
 class _MakeupState extends State<Makeup> {
+  late String ChoosedService;
   String ChoosedServiceType = 'ChoosedServiceType';
-  String ChoosedServicePrice = 'ChoosedServicePrice';
+  int ChoosedServicePrice = 0;
 
   @override
+  void initState() {
+    super.initState();
+    ChoosedService = widget.appointment.choosedService;
+  }
+
   Widget build(BuildContext context) {
     print('ChoosedService: ${widget.appointment.choosedService}');
 
@@ -64,16 +70,19 @@ class _MakeupState extends State<Makeup> {
                                 onPressed: () {
                                   setState(() {
                                     ChoosedServiceType = 'Bridal Makeup';
-                                    ChoosedServicePrice = '50000';
+                                    ChoosedServicePrice = 50000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Book(
-                                                choosedServiceType:
-                                                    ChoosedServiceType,
-                                                choosedServicePrice:
-                                                    ChoosedServicePrice,
+                                                appointment: Appointment(
+                                                    choosedService:
+                                                        ChoosedService,
+                                                    choosedServiceType:
+                                                        ChoosedServiceType,
+                                                    choosedServicePrice:
+                                                        ChoosedServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -106,16 +115,19 @@ class _MakeupState extends State<Makeup> {
                                 onPressed: () {
                                   setState(() {
                                     ChoosedServiceType = 'Party Makeup';
-                                    ChoosedServicePrice = '10000';
+                                    ChoosedServicePrice = 10000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Book(
-                                                choosedServiceType:
-                                                    ChoosedServiceType,
-                                                choosedServicePrice:
-                                                    ChoosedServicePrice,
+                                                appointment: Appointment(
+                                                    choosedService:
+                                                        ChoosedService,
+                                                    choosedServiceType:
+                                                        ChoosedServiceType,
+                                                    choosedServicePrice:
+                                                        ChoosedServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -148,16 +160,19 @@ class _MakeupState extends State<Makeup> {
                                 onPressed: () {
                                   setState(() {
                                     ChoosedServiceType = 'Simple Makeup';
-                                    ChoosedServicePrice = '5000';
+                                    ChoosedServicePrice = 5000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Book(
-                                                choosedServiceType:
-                                                    ChoosedServiceType,
-                                                choosedServicePrice:
-                                                    ChoosedServicePrice,
+                                                appointment: Appointment(
+                                                    choosedService:
+                                                        ChoosedService,
+                                                    choosedServiceType:
+                                                        ChoosedServiceType,
+                                                    choosedServicePrice:
+                                                        ChoosedServicePrice),
                                               )));
                                 },
                                 child: Text(

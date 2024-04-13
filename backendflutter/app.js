@@ -1,9 +1,11 @@
 const express = require ('express');
 const body_parser = require("body-parser");
-const userRouter = require("./routers/user.router");
+
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
+const userRouter = require("./routers/user.router");
+const appRouter = require("./routers/appointment.router");
 
 const app = express(); //importing express module
 
@@ -18,5 +20,6 @@ app.use(session({
 }));
 
 app.use('/',userRouter);
+app.use('/',appRouter);
 
 module.exports = app;

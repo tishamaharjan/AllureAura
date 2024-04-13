@@ -64,6 +64,6 @@ userSchema.methods.passwordComparison = async function(userPassword){
     
 }
 
-const userModel = db.model('user',userSchema); // to create userschema(Schema) in databae
+const userModel = db.model('User',userSchema); // to create userschema(Schema) in databae
 
 module.exports = userModel;

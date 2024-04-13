@@ -1,18 +1,28 @@
 import 'package:allureaura/BookBtn/time.dart';
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Date extends StatefulWidget {
-  const Date({super.key});
+  final Appointment appointment;
+  const Date({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Date> createState() => _DateState();
 }
 
 class _DateState extends State<Date> {
+  late String ChoosedService;
+  late String ChoosedServiceType;
+  late int ChoosedServicePrice;
+  late String Service;
+  late int HomeServicePrice;
+  late String UrgentBook;
+  late int UrgentBookPrice;
   late DateTime selectedDate;
   late DateTime calDate;
+  String SelectedDateOnly = 'SelectedDateOnly';
 
   // Future<void> _selectDate(BuildContext context) async {
   //   final DateTime? selected = await showDatePicker(
@@ -31,12 +41,27 @@ class _DateState extends State<Date> {
   @override
   void initState() {
     super.initState();
+    ChoosedService = widget.appointment.choosedService;
+    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
+    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    Service = widget.appointment.service ?? '';
+    HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
+    UrgentBook = widget.appointment.urgentBook ?? '';
+    UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
     selectedDate = DateTime.now();
     calDate = DateTime.now();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(
+        'Calender choosedServiceType: ${widget.appointment.choosedServiceType}');
+    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
+    print('Urgent Book: ${widget.appointment.urgentBook}');
+    print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
+    print('choosedService: ${widget.appointment.choosedService}');
+    print('Service: ${widget.appointment.service}');
+    print('Home Service Price: ${widget.appointment.homeServicePrice}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -80,8 +105,26 @@ class _DateState extends State<Date> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Time()));
+                        DateTime selectedDateOnly = DateTime(selectedDate.year,
+                            selectedDate.month, selectedDate.day);
+
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Time(
+                                      appointment: Appointment(
+                                          choosedService: ChoosedService,
+                                          choosedServiceType:
+                                              ChoosedServiceType,
+                                          choosedServicePrice:
+                                              ChoosedServicePrice,
+                                          service: Service,
+                                          homeServicePrice: HomeServicePrice,
+                                          urgentBook: UrgentBook,
+                                          urgentBookPrice: UrgentBookPrice,
+                                          selectedDate: selectedDateOnly,
+                                          calDate: calDate),
+                                    )));
                       },
                       child: Text(
                         'Next',
