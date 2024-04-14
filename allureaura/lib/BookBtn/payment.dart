@@ -1,6 +1,9 @@
+import 'package:allureaura/Payment/khaltipayment.dart';
 import 'package:allureaura/home.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
+
+import 'package:khalti_flutter/khalti_flutter.dart';
 
 class PayChoose extends StatefulWidget {
   const PayChoose({super.key});
@@ -40,8 +43,10 @@ class _PayChooseState extends State<PayChoose> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => KPayment()));
                       },
                       child: Text(
                         'Online',

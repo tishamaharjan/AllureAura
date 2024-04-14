@@ -2,30 +2,62 @@ import 'package:allureaura/home.dart';
 import 'package:allureaura/login.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:khalti/khalti.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  //Initializing shared preferences and check if there is data or token in it
+  //Initializing shared preferences and checking if there is any data or token in it
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  runApp(MyApp(
-    token: prefs.getString('token'),
-  ));
+
+  Khalti.init(
+    publicKey: 'test_public_key_5a827c020a334e4a8da08dabb911d7fc',
+  );
+
+  try {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+
+    runApp(
+      KhaltiScope(
+        publicKey: 'test_public_key_5a827c020a334e4a8da08dabb911d7fc',
+        builder: (context, navigatorKey) {
+          return MyApp(
+            token: token,
+            navigatorKey: navigatorKey,
+          );
+        },
+      ),
+    );
+  } catch (e) {
+    // Handle any errors here, such as showing an error message to the user.
+    print("Error initializing app: $e");
+  }
 }
 
 class MyApp extends StatelessWidget {
-  final token;
+  final String? token;
+  final GlobalKey<NavigatorState> navigatorKey;
+
   const MyApp({
-    @required this.token,
+    this.token,
     Key? key,
+    required this.navigatorKey,
   }) : super(key: key);
 
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: (JwtDecoder.isExpired(token) == false)
-            ? Home(token: token)
-            : Login());
+      navigatorKey: navigatorKey,
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('ne', 'NP'),
+      ],
+      localizationsDelegates: [
+        KhaltiLocalizations.delegate,
+      ],
+      home: (JwtDecoder.isExpired(token ?? '')) ? Login() : Home(token: token),
+    );
   }
 }
