@@ -24,4 +24,22 @@ class Appointment {
     this.calDate,
     this.choosedTime,
   });
+
+  factory Appointment.fromJson(Map<String, dynamic> json) {
+    return Appointment(
+      // username: json['username'],
+      choosedService: json['choosedService'],
+      choosedServiceType: json['choosedServiceType'],
+      choosedServicePrice: json['choosedServicePrice'],
+      service: json['service'],
+      homeServicePrice: json['homeServicePrice'],
+      urgentBook: json['urgentBook'],
+      urgentBookPrice: json['urgentBookPrice'],
+      selectedDate: json['selectedDate'] != null
+          ? DateTime.parse(json['selectedDate'])
+          : null,
+      choosedTime: json['choosedTime'],
+      // totalPrice: json['totalPrice'],
+    );
+  }
 }

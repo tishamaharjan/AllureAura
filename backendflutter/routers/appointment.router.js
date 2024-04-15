@@ -6,7 +6,7 @@ const appointmentController = require('../controller/appointment.controller');
 approuter.post('/appointment', appointmentController.create);
 
 // Route to get all appointments
-// router.get('/appointment', appointmentController.getAll);
+approuter.get('/appointment', appointmentController.getAll);
 
 // // Route to get a specific appointment 
 // router.get('/appointment/:id', appointmentController.getById);

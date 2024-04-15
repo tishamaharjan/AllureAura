@@ -23,21 +23,22 @@ const create = async (req, res, next) => {
 };
 
 // Get all appointments
-// const getAll = async (req, res) => {
-//     try {
-//         // Get all appointments from the database
-//         const appointments = await appointmentService.find();
+const getAll = async (req, res) => {
+    try {
+        // Get all appointments from the database
+        const appointments = await appointmentService.getAllAppointments();
         
-//         // Send success response
-//         res.status(200).json(appointments);
-//     } catch (error) {
-//         // Handle error and send error response
-//         res.status(500).json({
-//             message: 'Error retrieving appointments',
-//             error,
-//         });
-//     }
-// };
+        // Send success response
+        res.json(appointments);
+    } catch (error) {
+        console.error('Error fetching all appointments:', error);
+        res.status(500).json({
+            status: false,
+            message: 'Error retrieving appointments',
+            error,
+        });
+    }
+};
 
 // // Get an appointment by ID
 // const getById = async (req, res) => {
@@ -123,7 +124,7 @@ const create = async (req, res, next) => {
 
 module.exports = {
     create,
-    // getAll,
+    getAll,
     // getById,
     // update,
     // remove,

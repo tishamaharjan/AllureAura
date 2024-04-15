@@ -14,14 +14,16 @@ class appointmentService {
     }
 
     // Get all appointments
-    // static async getAllAppointments() {
-    //     try {
-    //         // Retrieve all appointments from the database
-    //         return await appointmentModel.find();
-    //     } catch (err) {
-    //         throw err;
-    //     }
-    // }
+    static async getAllAppointments() {
+        try {
+            // Retrieve all appointments from the database
+            const appointments = await appointmentModel.find();
+            return appointments;
+        } catch (err) {
+            console.error('Error fetching all appointments:', error);
+            throw err;
+        }
+    }
 
     // // Get an appointment by ID
     // static async getAppointmentById(id) {
