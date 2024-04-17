@@ -2,18 +2,27 @@ import 'package:allureaura/Payment/khaltipayment.dart';
 import 'package:allureaura/home.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
+import 'package:allureaura/appointmentDetails.dart';
 
-import 'package:khalti_flutter/khalti_flutter.dart';
+//import 'package:khalti_flutter/khalti_flutter.dart';
 
 class PayChoose extends StatefulWidget {
-  const PayChoose({super.key});
+  final Appointment appointment;
+  const PayChoose({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<PayChoose> createState() => _PayChooseState();
 }
 
 class _PayChooseState extends State<PayChoose> {
+  late String Username;
   @override
+  void initState() {
+    super.initState();
+
+    Username = widget.appointment.username;
+  }
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -64,8 +73,13 @@ class _PayChooseState extends State<PayChoose> {
                     width: MediaQuery.of(context).size.width * 0.5,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(
+                                      token: 'Token',
+                                      username: Username,
+                                    )));
                       },
                       child: Text(
                         'Cash',
@@ -80,7 +94,11 @@ class _PayChooseState extends State<PayChoose> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

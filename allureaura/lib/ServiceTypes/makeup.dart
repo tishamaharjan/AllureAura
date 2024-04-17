@@ -12,6 +12,7 @@ class Makeup extends StatefulWidget {
 }
 
 class _MakeupState extends State<Makeup> {
+  late String Username;
   late String ChoosedService;
   String ChoosedServiceType = 'ChoosedServiceType';
   int ChoosedServicePrice = 0;
@@ -19,6 +20,8 @@ class _MakeupState extends State<Makeup> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
   }
 
@@ -77,6 +80,7 @@ class _MakeupState extends State<Makeup> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -122,6 +126,7 @@ class _MakeupState extends State<Makeup> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -167,6 +172,7 @@ class _MakeupState extends State<Makeup> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -192,7 +198,11 @@ class _MakeupState extends State<Makeup> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

@@ -7,18 +7,22 @@ import 'package:http/http.dart' as http;
 import 'config.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final Appointment appointment;
+  const Profile({required this.appointment, Key? key}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  late String Username;
   Future<List<Appointment>>? appointmentsFuture;
 
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     appointmentsFuture = fetchAppointments(); // Initialize the future
   }
 
@@ -132,7 +136,11 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 2),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 2,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

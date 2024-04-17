@@ -1,11 +1,21 @@
+import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 import 'history.dart';
 import 'profile.dart';
 
 class BottomMenu extends StatefulWidget {
-  const BottomMenu({Key? key, required this.activeIndex}) : super(key: key);
   final int activeIndex;
+  final String token;
+  final String username;
+
+  const BottomMenu(
+      {Key? key,
+      required this.activeIndex,
+      required this.token,
+      required this.username})
+      : super(key: key);
 
   @override
   _BottomMenuState createState() => _BottomMenuState();
@@ -45,7 +55,11 @@ class _BottomMenuState extends State<BottomMenu> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Home()),
+                      MaterialPageRoute(
+                          builder: (context) => Home(
+                                token: widget.token,
+                                username: widget.username,
+                              )),
                     );
                   },
                   icon: Icon(
@@ -60,7 +74,12 @@ class _BottomMenuState extends State<BottomMenu> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Profile()),
+                      MaterialPageRoute(
+                          builder: (context) => Profile(
+                                appointment: Appointment(
+                                    username: widget.username,
+                                    choosedService: 'choosedService'),
+                              )),
                     );
                   },
                   icon: Icon(
@@ -75,7 +94,12 @@ class _BottomMenuState extends State<BottomMenu> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => History()),
+                      MaterialPageRoute(
+                          builder: (context) => History(
+                                appointment: Appointment(
+                                    username: widget.username,
+                                    choosedService: 'choosedService'),
+                              )),
                     );
                   },
                   icon: Icon(

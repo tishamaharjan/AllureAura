@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const userRouter = require("./routers/user.router");
 const appRouter = require("./routers/appointment.router");
+const adminRouter = require('./routers/admin.router');
 
 const app = express(); //importing express module
 
@@ -21,5 +22,6 @@ app.use(session({
 
 app.use('/',userRouter);
 app.use('/',appRouter);
+app.use('/',adminRouter);
 
 module.exports = app;

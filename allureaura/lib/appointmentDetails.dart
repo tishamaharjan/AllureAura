@@ -1,5 +1,5 @@
 class Appointment {
-  //final String username;
+  final String username;
   final String choosedService;
   final String? choosedServiceType;
   final int? choosedServicePrice;
@@ -10,9 +10,10 @@ class Appointment {
   final DateTime? selectedDate;
   final DateTime? calDate;
   final String? choosedTime;
+  final int? totalPrice;
 
   Appointment({
-    //required this.username,
+    required this.username,
     required this.choosedService,
     this.choosedServiceType,
     this.choosedServicePrice,
@@ -23,11 +24,12 @@ class Appointment {
     this.selectedDate,
     this.calDate,
     this.choosedTime,
+    this.totalPrice,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
     return Appointment(
-      // username: json['username'],
+      username: json['username'],
       choosedService: json['choosedService'],
       choosedServiceType: json['choosedServiceType'],
       choosedServicePrice: json['choosedServicePrice'],
@@ -39,7 +41,7 @@ class Appointment {
           ? DateTime.parse(json['selectedDate'])
           : null,
       choosedTime: json['choosedTime'],
-      // totalPrice: json['totalPrice'],
+      totalPrice: json['totalPrice'],
     );
   }
 }

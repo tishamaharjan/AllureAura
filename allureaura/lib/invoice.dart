@@ -21,15 +21,19 @@ class Invoice extends StatefulWidget {
 }
 
 class _InvoiceState extends State<Invoice> {
+  late String Username;
   late int ChoosedServicePrice;
   late int HomeServicePrice;
   late int UrgentBookPrice;
   int TotalPrice = 0;
   bool notvalid = false;
+  late String username;
 
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
     HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
     UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
@@ -39,10 +43,13 @@ class _InvoiceState extends State<Invoice> {
     try {
       print('1  Here');
       var appointmentDetails = {
+        "username": widget.appointment.username,
         "choosedService": widget.appointment.choosedService,
         "choosedServiceType": widget.appointment.choosedServiceType,
         "choosedServicePrice": widget.appointment.choosedServicePrice,
+        "service": widget.appointment.service,
         "homeServicePrice": widget.appointment.homeServicePrice,
+        "urgentBook": widget.appointment.urgentBook,
         "urgentBookPrice": widget.appointment.urgentBookPrice,
         "selectedDate": widget.appointment.selectedDate.toString(),
         "choosedTime": widget.appointment.choosedTime,
@@ -67,10 +74,14 @@ class _InvoiceState extends State<Invoice> {
         print("Appointment details saved successfully");
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => PayChoose()),
+          MaterialPageRoute(
+              builder: (context) => PayChoose(
+                    appointment: Appointment(
+                        username: Username, choosedService: 'choosedService'),
+                  )),
         );
       } else {
-        final errorResponse = jsonDecode(response.body);
+        //final errorResponse = jsonDecode(response.body);
         print('Failed to book appointment.');
 
         showDialog(
@@ -146,6 +157,14 @@ class _InvoiceState extends State<Invoice> {
                           //mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Text(
+                              '  Username:\n  ${widget.appointment.username}\n',
+                              style: TextStyle(
+                                fontFamily: 'Arial',
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             Text(
                               '  Choosed Service:\n  ${widget.appointment.choosedService}\n',
                               style: TextStyle(
@@ -253,7 +272,11 @@ class _InvoiceState extends State<Invoice> {
                     ),
                   ],
                 ))),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

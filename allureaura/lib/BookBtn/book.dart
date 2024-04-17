@@ -12,6 +12,7 @@ class Book extends StatefulWidget {
 }
 
 class _BookState extends State<Book> {
+  late String Username;
   late String ChoosedService;
   late String ChoosedServiceType;
   late int ChoosedServicePrice;
@@ -21,12 +22,15 @@ class _BookState extends State<Book> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
     ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
     ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
   }
 
   Widget build(BuildContext context) {
+    print('Book username: ${widget.appointment.username}');
     print('Book choosedServiceType: ${widget.appointment.choosedServiceType}');
     print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
     print('choosedService: ${widget.appointment.choosedService}');
@@ -67,6 +71,7 @@ class _BookState extends State<Book> {
                             MaterialPageRoute(
                                 builder: (context) => Urgent(
                                       appointment: Appointment(
+                                          username: Username,
                                           choosedService: ChoosedService,
                                           choosedServiceType:
                                               ChoosedServiceType,
@@ -101,6 +106,7 @@ class _BookState extends State<Book> {
                             MaterialPageRoute(
                                 builder: (context) => Urgent(
                                       appointment: Appointment(
+                                          username: Username,
                                           choosedService: ChoosedService,
                                           choosedServiceType:
                                               ChoosedServiceType,
@@ -123,7 +129,11 @@ class _BookState extends State<Book> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

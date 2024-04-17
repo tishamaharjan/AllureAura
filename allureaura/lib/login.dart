@@ -55,8 +55,12 @@ class _LoginState extends State<Login> {
           var myToken = jsonResponse['token'];
 
           prefer.setString('token', myToken);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Home(token: myToken)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    Home(token: myToken, username: userNameL.text),
+              ));
         } else {
           print("Something Went Wrong");
           showDialog(

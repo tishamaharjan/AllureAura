@@ -12,8 +12,16 @@ class Courses extends StatefulWidget {
 }
 
 class _CoursesState extends State<Courses> {
+  late String Username;
   int CoursePrice = 0;
+
   @override
+  void initState() {
+    super.initState();
+
+    Username = widget.appointment.username;
+  }
+
   Widget build(BuildContext context) {
     print('ChoosedService: ${widget.appointment.choosedService}');
     return SafeArea(
@@ -63,7 +71,12 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose()));
+                                          builder: (context) => PayChoose(
+                                                appointment: Appointment(
+                                                    username: Username,
+                                                    choosedService:
+                                                        'choosedService'),
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -96,7 +109,12 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose()));
+                                          builder: (context) => PayChoose(
+                                                appointment: Appointment(
+                                                    username: Username,
+                                                    choosedService:
+                                                        'choosedService'),
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -129,7 +147,12 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose()));
+                                          builder: (context) => PayChoose(
+                                                appointment: Appointment(
+                                                    username: Username,
+                                                    choosedService:
+                                                        'choosedService'),
+                                              )));
                                 },
                                 child: Text(
                                   'Book',
@@ -148,7 +171,8 @@ class _CoursesState extends State<Courses> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar:
+            BottomMenu(activeIndex: 0, token: '', username: Username),
       ),
     );
   }

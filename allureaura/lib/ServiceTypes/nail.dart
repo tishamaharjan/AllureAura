@@ -12,6 +12,7 @@ class Nail extends StatefulWidget {
 }
 
 class _NailState extends State<Nail> {
+  late String Username;
   late String ChoosedService;
   String ChoosedServiceType = 'ChoosedServiceType';
   int ChoosedServicePrice = 0;
@@ -19,6 +20,8 @@ class _NailState extends State<Nail> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
   }
 
@@ -76,6 +79,7 @@ class _NailState extends State<Nail> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -121,6 +125,7 @@ class _NailState extends State<Nail> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -166,6 +171,7 @@ class _NailState extends State<Nail> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -191,7 +197,11 @@ class _NailState extends State<Nail> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

@@ -12,6 +12,7 @@ class Time extends StatefulWidget {
 }
 
 class _TimeState extends State<Time> {
+  late String Username;
   late String ChoosedService;
   late String ChoosedServiceType;
   late int ChoosedServicePrice;
@@ -26,6 +27,8 @@ class _TimeState extends State<Time> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
     ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
     ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
@@ -82,6 +85,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -123,6 +127,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -164,6 +169,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -205,6 +211,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -246,6 +253,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -287,6 +295,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -328,6 +337,7 @@ class _TimeState extends State<Time> {
                               MaterialPageRoute(
                                   builder: (context) => Invoice(
                                         appointment: Appointment(
+                                            username: Username,
                                             choosedService: ChoosedService,
                                             choosedServiceType:
                                                 ChoosedServiceType,
@@ -364,7 +374,11 @@ class _TimeState extends State<Time> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

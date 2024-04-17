@@ -12,6 +12,8 @@ class ManiPedi extends StatefulWidget {
 }
 
 class _ManiPediState extends State<ManiPedi> {
+  late String Token;
+  late String Username;
   late String ChoosedService;
   String ChoosedServiceType = 'ChoosedServiceType';
   int ChoosedServicePrice = 0;
@@ -19,6 +21,8 @@ class _ManiPediState extends State<ManiPedi> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
   }
 
@@ -76,6 +80,7 @@ class _ManiPediState extends State<ManiPedi> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -121,6 +126,7 @@ class _ManiPediState extends State<ManiPedi> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -166,6 +172,7 @@ class _ManiPediState extends State<ManiPedi> {
                                       MaterialPageRoute(
                                           builder: (context) => Book(
                                                 appointment: Appointment(
+                                                    username: Username,
                                                     choosedService:
                                                         ChoosedService,
                                                     choosedServiceType:
@@ -191,7 +198,11 @@ class _ManiPediState extends State<ManiPedi> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: Token,
+          username: Username,
+        ),
       ),
     );
   }

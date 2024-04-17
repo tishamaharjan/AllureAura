@@ -13,6 +13,7 @@ class appointmentService {
         }
     }
 
+
     // Get all appointments
     static async getAllAppointments() {
         try {

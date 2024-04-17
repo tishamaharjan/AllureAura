@@ -12,6 +12,7 @@ class Urgent extends StatefulWidget {
 }
 
 class _UrgentState extends State<Urgent> {
+  late String Username;
   late String ChoosedService;
   late String ChoosedServiceType;
   late int ChoosedServicePrice;
@@ -23,6 +24,8 @@ class _UrgentState extends State<Urgent> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
     ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
     ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
@@ -74,6 +77,7 @@ class _UrgentState extends State<Urgent> {
                             MaterialPageRoute(
                                 builder: (context) => Date(
                                       appointment: Appointment(
+                                          username: Username,
                                           choosedService: ChoosedService,
                                           choosedServiceType:
                                               ChoosedServiceType,
@@ -110,6 +114,7 @@ class _UrgentState extends State<Urgent> {
                             MaterialPageRoute(
                                 builder: (context) => Date(
                                     appointment: Appointment(
+                                        username: Username,
                                         choosedService: ChoosedService,
                                         choosedServiceType: ChoosedServiceType,
                                         choosedServicePrice:
@@ -132,7 +137,11 @@ class _UrgentState extends State<Urgent> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

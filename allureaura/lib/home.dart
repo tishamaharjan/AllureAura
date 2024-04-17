@@ -1,6 +1,6 @@
 import 'package:allureaura/appointmentDetails.dart';
 import 'package:flutter/material.dart';
-// import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './ServiceTypes/makeup.dart';
 import './ServiceTypes/hair.dart';
 import './ServiceTypes/nail.dart';
@@ -10,26 +10,54 @@ import './ServiceTypes/courses.dart';
 import 'buttommenu.dart';
 
 class Home extends StatefulWidget {
-  final token;
+  final String token;
+  final String username;
 
-  const Home({@required this.token, Key? key}) : super(key: key);
+  const Home({required this.token, required this.username, Key? key})
+      : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  late String username;
-  String ChoosedService = 'ChoosedService';
+  late Future<Map<String, String>> preferencesFuture;
+
   @override
-  // void initState() {
-  //   super.initState();
-  //   Map<String, dynamic> jwtDecodedToken = JwtDecoder.decode(widget.token);
+  void initState() {
+    super.initState();
+    preferencesFuture = loadPreferences();
+  }
 
-  //   username = jwtDecodedToken['username'];
-  // }
+  Future<Map<String, String>> loadPreferences() async {
+    SharedPreferences prefer = await SharedPreferences.getInstance();
+    String token = prefer.getString('token') ?? widget.token;
+    String username = prefer.getString('username') ?? widget.username;
+    return {'token': token, 'username': username};
+  }
 
+  @override
   Widget build(BuildContext context) {
+    return FutureBuilder<Map<String, String>>(
+      future: preferencesFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          // Use the data to initialize the Home widget
+          String token = snapshot.data!['token']!;
+          String username = snapshot.data!['username']!;
+          return buildHomeScreen(context, token, username);
+        } else {
+          return Center(child: Text('Failed to load preferences'));
+        }
+      },
+    );
+  }
+
+  Widget buildHomeScreen(BuildContext context, String token, String username) {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -75,6 +103,7 @@ class _HomeState extends State<Home> {
                               onTap: () {
                                 //Creating an instance
                                 Appointment appointment = Appointment(
+                                  username: username,
                                   choosedService: 'Makeup',
                                 );
                                 Navigator.pushReplacement(
@@ -88,6 +117,7 @@ class _HomeState extends State<Home> {
                             GestureDetector(
                                 onTap: () {
                                   Appointment appointment = Appointment(
+                                    username: username,
                                     choosedService: 'Hair',
                                   );
                                   Navigator.pushReplacement(
@@ -104,6 +134,7 @@ class _HomeState extends State<Home> {
                             GestureDetector(
                                 onTap: () {
                                   Appointment appointment = Appointment(
+                                    username: username,
                                     choosedService: 'Nail',
                                   );
                                   Navigator.pushReplacement(
@@ -116,6 +147,7 @@ class _HomeState extends State<Home> {
                             GestureDetector(
                                 onTap: () {
                                   Appointment appointment = Appointment(
+                                    username: username,
                                     choosedService: 'Skin',
                                   );
                                   Navigator.pushReplacement(
@@ -132,6 +164,7 @@ class _HomeState extends State<Home> {
                             GestureDetector(
                                 onTap: () {
                                   Appointment appointment = Appointment(
+                                    username: username,
                                     choosedService: 'ManiPedi',
                                   );
                                   Navigator.pushReplacement(
@@ -144,6 +177,7 @@ class _HomeState extends State<Home> {
                             GestureDetector(
                                 onTap: () {
                                   Appointment appointment = Appointment(
+                                    username: username,
                                     choosedService: 'Courses',
                                   );
                                   Navigator.pushReplacement(
@@ -161,7 +195,11 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: token,
+          username: username,
+        ),
       ),
     );
   }

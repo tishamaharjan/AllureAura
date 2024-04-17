@@ -13,6 +13,7 @@ class Date extends StatefulWidget {
 }
 
 class _DateState extends State<Date> {
+  late String Username;
   late String ChoosedService;
   late String ChoosedServiceType;
   late int ChoosedServicePrice;
@@ -41,6 +42,8 @@ class _DateState extends State<Date> {
   @override
   void initState() {
     super.initState();
+
+    Username = widget.appointment.username;
     ChoosedService = widget.appointment.choosedService;
     ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
     ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
@@ -113,6 +116,7 @@ class _DateState extends State<Date> {
                             MaterialPageRoute(
                                 builder: (context) => Time(
                                       appointment: Appointment(
+                                          username: Username,
                                           choosedService: ChoosedService,
                                           choosedServiceType:
                                               ChoosedServiceType,
@@ -149,7 +153,11 @@ class _DateState extends State<Date> {
                 ]),
           ),
         ),
-        bottomNavigationBar: BottomMenu(activeIndex: 0),
+        bottomNavigationBar: BottomMenu(
+          activeIndex: 0,
+          token: '',
+          username: Username,
+        ),
       ),
     );
   }

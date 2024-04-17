@@ -57,7 +57,23 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: [
         KhaltiLocalizations.delegate,
       ],
-      home: (JwtDecoder.isExpired(token ?? '')) ? Login() : Home(token: token),
+      home: (JwtDecoder.isExpired(token ?? ''))
+          ? Login()
+          : Home(
+              token: token!,
+              username: getUsernameFromToken(token!),
+            ),
     );
+  }
+
+  // A function to extract the username from the JWT token
+  String getUsernameFromToken(String? token) {
+    if (token == null || token.isEmpty) {
+      return '';
+    }
+    // Decode the JWT token and get the payload
+    Map<String, dynamic> payload = JwtDecoder.decode(token);
+    // Assuming the payload contains a 'username' field
+    return payload['username'] ?? '';
   }
 }
