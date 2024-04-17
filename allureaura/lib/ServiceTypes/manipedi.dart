@@ -12,7 +12,6 @@ class ManiPedi extends StatefulWidget {
 }
 
 class _ManiPediState extends State<ManiPedi> {
-  late String Token;
   late String Username;
   late String ChoosedService;
   String ChoosedServiceType = 'ChoosedServiceType';
@@ -200,7 +199,7 @@ class _ManiPediState extends State<ManiPedi> {
         ),
         bottomNavigationBar: BottomMenu(
           activeIndex: 0,
-          token: Token,
+          token: '',
           username: Username,
         ),
       ),

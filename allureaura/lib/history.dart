@@ -87,13 +87,16 @@ class _HistoryState extends State<History> {
 
   // Method to build a list of appointment containers
   Widget buildAppointmentList(List<Appointment> appointments) {
+    List<Appointment> filteredAppointments = appointments
+        .where((appointment) => appointment.username == username)
+        .toList();
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: appointments.length,
+      itemCount: filteredAppointments.length,
       itemBuilder: (context, index) {
         // Display each appointment in a card
-        Appointment appointment = appointments[index];
+        Appointment appointment = filteredAppointments[index];
         return Container(
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(16.0),
