@@ -17,9 +17,9 @@ class History extends StatefulWidget {
 
 class _HistoryState extends State<History> {
   late SharedPreferences prefer;
-
   late String username;
   Future<List<Appointment>>? appointmentsFuture;
+
   @override
   void initState() {
     super.initState();
@@ -76,7 +76,7 @@ class _HistoryState extends State<History> {
     );
 
     if (response.statusCode == 200) {
-      List appDetails = jsonDecode(response.body);
+      List<dynamic> appDetails = jsonDecode(response.body);
       return appDetails
           .map((appointment) => Appointment.fromJson(appointment))
           .toList();
@@ -92,7 +92,7 @@ class _HistoryState extends State<History> {
       physics: NeverScrollableScrollPhysics(),
       itemCount: appointments.length,
       itemBuilder: (context, index) {
-        // Display each appointment as a ListTile or Card
+        // Display each appointment in a card
         Appointment appointment = appointments[index];
         return Container(
           margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -124,32 +124,34 @@ class _HistoryState extends State<History> {
               Text('Appointment of ${appointment.choosedService}'),
               Text('Choosed Service: ${appointment.choosedServiceType}'),
               Text('Choosed Service Price: ${appointment.choosedServicePrice}'),
-              Text('HomeServicePrice: ${appointment.homeServicePrice}'),
-              Text('UrgentServicePrice: ${appointment.urgentBookPrice}'),
+              Text('Service: ${appointment.service}'),
+              Text('Home Service Price: ${appointment.homeServicePrice}'),
+              Text('Urgent Book: ${appointment.urgentBook}'),
+              Text('Urgent Service Price: ${appointment.urgentBookPrice}'),
               Text('Date: ${appointment.selectedDate}'),
               Text('Time: ${appointment.choosedTime}'),
               Text('Total Price: ${appointment.totalPrice}'),
 
               // Adding buttons
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle appointment completion
-                      //completeAppointment(appointment);
-                    },
-                    child: Text('Completed'),
-                  ),
-                  SizedBox(width: 8),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Handle appointment cancellation
-                      //cancelAppointment(appointment);
-                    },
-                    child: Text('Cancel'),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         // Handle appointment completion
+              //         //completeAppointment(appointment);
+              //       },
+              //       child: Text('Completed'),
+              //     ),
+              //     SizedBox(width: 8),
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         // Handle appointment cancellation
+              //         //cancelAppointment(appointment);
+              //       },
+              //       child: Text('Cancel'),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         );
@@ -189,7 +191,7 @@ class _HistoryState extends State<History> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       // Loading indicator while waiting for data
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       // Display error message if there is an error
                       return Center(child: Text('Error: ${snapshot.error}'));
@@ -199,7 +201,7 @@ class _HistoryState extends State<History> {
                       return buildAppointmentList(appointments);
                     } else {
                       // No data available
-                      return Center(child: Text('No appointments found'));
+                      return const Center(child: Text('No appointments found'));
                     }
                   },
                 ),

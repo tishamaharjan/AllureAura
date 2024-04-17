@@ -197,7 +197,7 @@ class _InvoiceState extends State<Invoice> {
                               ),
                             ),
                             Text(
-                              '  HomeService Price:\n  ${widget.appointment.homeServicePrice ?? '-'}\n',
+                              '  Home Service Price:\n  ${widget.appointment.homeServicePrice ?? '-'}\n',
                               style: TextStyle(
                                 //fontFamily: 'Arial',
                                 fontSize: 18,

@@ -31,8 +31,8 @@ class Appointment {
     return Appointment(
       username: json['username'],
       choosedService: json['choosedService'],
-      choosedServiceType: json['choosedServiceType'],
-      choosedServicePrice: json['choosedServicePrice'],
+      choosedServiceType: json['choosedServiceType'] ?? 'Unknown Type',
+      choosedServicePrice: json['choosedServicePrice'] as int?,
       service: json['service'],
       homeServicePrice: json['homeServicePrice'],
       urgentBook: json['urgentBook'],
