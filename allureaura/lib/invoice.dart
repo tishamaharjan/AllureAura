@@ -77,7 +77,12 @@ class _InvoiceState extends State<Invoice> {
           MaterialPageRoute(
               builder: (context) => PayChoose(
                     appointment: Appointment(
-                        username: Username, choosedService: 'choosedService'),
+                      username: Username,
+                      fullname: '',
+                      email: '',
+                      phonenumber: '',
+                      choosedService: 'choosedService',
+                    ),
                   )),
         );
       } else {

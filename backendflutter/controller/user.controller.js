@@ -63,3 +63,38 @@ exports.login = async(req,res,next) => {
         return res.status(500).json({ status: false, message: "Internal Server Error." });
     }
 }
+
+exports.getUserDetails = async (req, res, next) => {
+    try {
+        const { username } = req.params;
+        const user = await userService.getUserDetails(username);
+        
+        if (!user) {
+            return res.status(404).json({ status: false, message: 'User not found' });
+        }
+
+        res.json({ status: true, user });
+    } catch (error) {
+        console.error('Error fetching user details:', error);
+        return res.status(500).json({ status: false, message: 'Internal Server Error.' });
+    }
+};
+
+exports.updateUser = async (req, res, next) => {
+    try {
+        const { username } = req.params;
+        const { fullname, email, phonenumber } = req.body;
+
+        const updatedUser = await userService.updateUserDetails(username, { fullname, email, phonenumber });
+
+        if (updatedUser) {
+            res.status(200).json({ status: true, message: 'User details updated successfully' });
+        } else {
+            res.status(404).json({ status: false, message: 'User not found' });
+        }
+    } catch (error) {
+        console.error('Error updating user details:', error);
+        res.status(500).json({ status: false, message: 'Internal Server Error' });
+    }
+};
+

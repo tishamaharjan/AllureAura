@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const db = require('../config/db');
 
+
+
 const { Schema } = mongoose; // importing schema property from mongoose
 
 const userSchema = new Schema({

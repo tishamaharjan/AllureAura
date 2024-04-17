@@ -12,6 +12,10 @@ class Appointment {
   final String? choosedTime;
   final int? totalPrice;
 
+  final String? fullname;
+  final String? email;
+  final String? phonenumber;
+
   Appointment({
     required this.username,
     required this.choosedService,
@@ -25,6 +29,9 @@ class Appointment {
     this.calDate,
     this.choosedTime,
     this.totalPrice,
+    this.fullname,
+    this.email,
+    this.phonenumber,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
@@ -42,6 +49,9 @@ class Appointment {
           : null,
       choosedTime: json['choosedTime'],
       totalPrice: json['totalPrice'],
+      fullname: json['fullname'],
+      email: json['email'],
+      phonenumber: json['phonenumber'],
     );
   }
 }

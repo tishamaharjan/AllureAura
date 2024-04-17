@@ -32,5 +32,32 @@ class userService{
         return jwt.sign(tokenData,secretKey,{expiresIn:jwt_time});
 
     }
+
+    static async getUserDetails(username) {
+        try {
+            const user = await userModel.findOne({ username });
+            return user;
+        } catch (err) {
+            console.error('Error fetching user details:', err);
+            throw err;
+        }
+    }
+
+    static async updateUserDetails(username, updatedDetails) {
+        try {
+            // Update the user details in the database
+            const user = await userModel.findOneAndUpdate(
+                { username: username },
+                { $set: updatedDetails },
+                { new: true } // Return the updated document
+            );
+
+            return user;
+        } catch (err) {
+            console.error('Error updating user details:', err);
+            throw err;
+        }
+    }
+    
 }
 module.exports = userService;
