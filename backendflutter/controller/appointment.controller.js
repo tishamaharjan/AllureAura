@@ -40,29 +40,50 @@ const getAll = async (req, res) => {
     }
 };
 
-// // Get an appointment by ID
-// const getById = async (req, res) => {
-//     try {
-//         const appointmentId = req.params.id;
+// Function to handle appointment completion
+const completeAppointment = async (req, res) => {
+    try {
+        console.log('Received request body:', req.body);
+        const {appointmentID} = req.body;
 
-//         // Find the appointment by ID
-//         const appointment = await appointmentService.findById(appointmentId);
+        // if (!appointmentID) {
+        //     return res.status(400).json({ message: 'Appointment ID is missing or invalid' });
+        // }
 
-//         // Check if appointment exists
-//         if (!appointment) {
-//             return res.status(404).json({ message: 'Appointment not found' });
-//         }
+        // Complete the appointment using the ID
+        const completedAppointment = await appointmentService.completeAppointment(appointmentID);
 
-//         // Send success response
-//         res.status(200).json(appointment);
-//     } catch (error) {
-//         // Handle error and send error response
-//         res.status(500).json({
-//             message: 'Error retrieving appointment',
-//             error,
-//         });
-//     }
-// };
+        // If the appointment was successfully completed, send a success response
+        res.status(200).json({ message: 'Appointment marked as completed and moved to completed appointments collection' });
+    } catch (error) {
+        
+        if (error.kind === 'ObjectId') {
+            res.status(400).json({ message: 'Invalid appointment ID format' });
+        } 
+                // If the appointment is not found, return a 404 Not Found response
+        else if (error.message === 'Appointment not found') {
+            res.status(404).json({ message: 'Appointment not found' });
+            console.error(`Error completing appointment with ID ${req.params.id}:`, error);
+        } else {
+            // Handle other errors and respond with a 500 Internal Server Error
+            console.error('Error completing appointment:', error);
+            res.status(500).json({ message: 'Error completing appointment', error });
+        }
+    }
+};
+
+// Get all completed appointments
+const getAllCompleted = async (req, res, next) => {
+    try {
+        const completedAppointments = await appointmentService.getAllCompletedAppointments();
+        res.status(200).json(completedAppointments);
+    } catch (error) {
+        console.error('Error fetching all completed appointments:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
 
 // // Update an appointment by ID
 // const update = async (req, res) => {
@@ -96,36 +117,33 @@ const getAll = async (req, res) => {
 //     }
 // };
 
-// // Delete an appointment by ID
-// const remove = async (req, res) => {
-//     try {
-//         const appointmentId = req.params.id;
+// Delete an appointment by ID
+const remove = async (req, res) => {
+    try {
+        const id = req.params.id;
 
-//         // Delete the appointment using the ID
-//         const deletedAppointment = await appointmentService.findByIdAndDelete(appointmentId);
+        // Delete the appointment using the ID
+        const deletedAppointment = await appointmentService.deleteAppointmentById(id);
 
-//         // Check if appointment was found and deleted
-//         if (!deletedAppointment) {
-//             return res.status(404).json({ message: 'Appointment not found' });
-//         }
+      
+        if (!deletedAppointment) {
+            return res.status(404).json({ message: 'Appointment not found', deletedAppointment });
+        }
 
-//         // Send success response
-//         res.status(200).json({
-//             message: 'Appointment deleted successfully',
-//         });
-//     } catch (error) {
-//         // Handle error and send error response
-//         res.status(500).json({
-//             message: 'Error deleting appointment',
-//             error,
-//         });
-//     }
-//};
+        // Send success response
+        res.status(200).json({
+            message: 'Appointment deleted successfully',
+        });
+    } catch (error) {
+        res.status(500).json({message: 'Error deleting appointment',error});
+    }
+};
 
 module.exports = {
     create,
     getAll,
-    // getById,
+    completeAppointment,
+    getAllCompleted,
     // update,
-    // remove,
+    remove,
 };

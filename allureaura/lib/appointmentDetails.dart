@@ -1,4 +1,5 @@
 class Appointment {
+  final String? id;
   final String username;
   final String choosedService;
   final String? choosedServiceType;
@@ -15,8 +16,10 @@ class Appointment {
   final String? fullname;
   final String? email;
   final String? phonenumber;
+  final String? feedback;
 
   Appointment({
+    this.id,
     required this.username,
     required this.choosedService,
     this.choosedServiceType,
@@ -32,10 +35,12 @@ class Appointment {
     this.fullname,
     this.email,
     this.phonenumber,
+    this.feedback,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
     return Appointment(
+      id: json['_id'],
       username: json['username'],
       choosedService: json['choosedService'],
       choosedServiceType: json['choosedServiceType'] ?? 'Unknown Type',
@@ -52,6 +57,29 @@ class Appointment {
       fullname: json['fullname'],
       email: json['email'],
       phonenumber: json['phonenumber'],
+      feedback: json['feedback'] ?? "",
     );
   }
+
+  // Define the toJson method
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     '_id': id,
+  //     'username': username,
+  //     'choosedService': choosedService,
+  //     'choosedServiceType': choosedServiceType,
+  //     'choosedServicePrice': choosedServicePrice,
+  //     'service': service,
+  //     'homeServicePrice': homeServicePrice,
+  //     'urgentBook': urgentBook,
+  //     'urgentBookPrice': urgentBookPrice,
+  //     'selectedDate': selectedDate?.toIso8601String(),
+  //     'choosedTime': choosedTime,
+  //     'totalPrice': totalPrice,
+  //     'fullname': fullname,
+  //     'email': email,
+  //     'phonenumber': phonenumber,
+  //     'feedback': feedback,
+  //   };
+  //}
 }

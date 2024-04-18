@@ -17,18 +17,15 @@ approuter.use(cors(corsOptions));
 // Route for creating new appointment in database
 approuter.post('/appointment', appointmentController.create);
 
-approuter.post('/appointmenthistory', appointmentController.create);
-
 // Route to get all appointments
 approuter.get('/appointment', appointmentController.getAll);
 
-// // Route to get a specific appointment 
-// router.get('/appointment/:id', appointmentController.getById);
+// Route to for completed appointments
+approuter.post('/appointment/complete', appointmentController.completeAppointment);
+approuter.get('/appointment/complete', appointmentController.getAllCompleted);
 
-// // // Route to update an appointment
-// // router.put('/appointments/:id', appointmentController.update);
 
-// // Route to delete an appointment
-// router.delete('/appointment/:id', appointmentController.delete);
+// Route to delete an appointment
+approuter.delete('/appointment/:id', appointmentController.remove);
 
 module.exports = approuter;
