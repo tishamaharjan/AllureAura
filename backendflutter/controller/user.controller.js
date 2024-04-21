@@ -12,7 +12,6 @@ exports.register = async(req,res,next) => {
 
     catch(error) {
         if (error.code === 11000 && error.keyPattern && error.keyValue) {
-            // Getting the duplicate key value
             const duplicateKey = Object.keys(error.keyValue)[0];
             res.status(400).json({ status: false, message: `The ${duplicateKey} is already in use.` });
         } else {

@@ -18,6 +18,9 @@ class Appointment {
   final String? phonenumber;
   final String? feedback;
 
+  final String? choosedCourseService;
+  final int? totalCoursePrice;
+
   Appointment({
     this.id,
     required this.username,
@@ -36,6 +39,8 @@ class Appointment {
     this.email,
     this.phonenumber,
     this.feedback,
+    this.choosedCourseService,
+    this.totalCoursePrice,
   });
 
   factory Appointment.fromJson(Map<String, dynamic> json) {
@@ -61,7 +66,7 @@ class Appointment {
     );
   }
 
-  // Define the toJson method
+  // Defining the toJson method
   Map<String, dynamic> toJson() {
     return {
       'id': id,

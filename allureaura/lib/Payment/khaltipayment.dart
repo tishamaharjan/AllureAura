@@ -21,8 +21,6 @@ class _KPaymentState extends State<KPayment> {
       ),
       preferences: [
         PaymentPreference.khalti,
-        PaymentPreference.mobileBanking,
-        PaymentPreference.connectIPS,
       ],
       onSuccess: (successModel) {
         print('Payment successful: $successModel');
@@ -70,8 +68,6 @@ class _KPaymentState extends State<KPayment> {
               ),
               preferences: [
                 PaymentPreference.khalti,
-                PaymentPreference.mobileBanking,
-                PaymentPreference.connectIPS,
               ],
               onSuccess: (successModel) {
                 print('Payment successful: $successModel');

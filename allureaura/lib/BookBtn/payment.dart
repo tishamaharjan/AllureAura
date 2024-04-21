@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 import 'package:allureaura/appointmentDetails.dart';
 
-//import 'package:khalti_flutter/khalti_flutter.dart';
-
 class PayChoose extends StatefulWidget {
   final Appointment appointment;
   const PayChoose({required this.appointment, Key? key}) : super(key: key);
@@ -60,7 +58,7 @@ class _PayChooseState extends State<PayChoose> {
                       child: Text(
                         'Online',
                         style: TextStyle(
-                          color: Color(0xFF7743DB), // Text color of the button
+                          color: Color(0xFF7743DB),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -84,7 +82,7 @@ class _PayChooseState extends State<PayChoose> {
                       child: Text(
                         'Cash',
                         style: TextStyle(
-                          color: Color(0xFF7743DB), // Text color of the button
+                          color: Color(0xFF7743DB),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

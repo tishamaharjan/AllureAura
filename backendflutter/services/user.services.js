@@ -45,11 +45,11 @@ class userService{
 
     static async updateUserDetails(username, updatedDetails) {
         try {
-            // Update the user details in the database
+            // Updating the user details in the database
             const user = await userModel.findOneAndUpdate(
                 { username: username },
                 { $set: updatedDetails },
-                { new: true } // Return the updated document
+                { new: true } // Returning updated details
             );
 
             return user;

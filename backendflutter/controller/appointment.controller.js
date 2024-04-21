@@ -1,9 +1,9 @@
 const appointmentService = require('../services/appointment.services'); // Import the Appointment model
 
-// Create a new appointment
+// Creating a new appointment
 const create = async (req, res, next) => {
     try {
-        // Extract appointment details
+        // Extracting appointment details
         const { username, choosedService, choosedServiceType, choosedServicePrice, service, homeServicePrice, urgentBook, urgentBookPrice, selectedDate, choosedTime, totalPrice } = req.body;
         console.log('Received request data:', req.body);
         const appointment = await appointmentService.createAppointment(username, choosedService, choosedServiceType, choosedServicePrice, service, homeServicePrice, urgentBook, urgentBookPrice, selectedDate, choosedTime, totalPrice);
@@ -21,11 +21,46 @@ const create = async (req, res, next) => {
     }
 };
 
+// Creating new course appointment
+const createCourse = async (req, res, next) => {
+    try {
+        // Extract appointment details of course
+        const { username, choosedService, totalPrice } = req.body;
+        console.log('Received request course:', req.body);
+        const courseAppointment = await appointmentService.createCourseAppointment(username, choosedService, totalPrice);
+
+        res.status(201).json({ status: true, success: 'Course appointment created successfully' });
+    }
+
+    catch (error) {
+        console.error('Error creating course appointment:', error);
+        res.status(500).json({
+            status: false,
+            message: 'Error creating course appointment',
+            error,
+        });
+    }
+};
+
 // Get all appointments from database
 const getAll = async (req, res) => {
     try {
         const appointments = await appointmentService.getAllAppointments();
         res.json(appointments);
+    } catch (error) {
+        console.error('Error fetching all appointments:', error);
+        res.status(500).json({
+            status: false,
+            message: 'Error retrieving appointments',
+            error,
+        });
+    }
+};
+
+const getAllCourse = async (req, res) => {
+    try {
+        const courseDetails = await appointmentService.getAllCourses();
+        res.json(courseDetails);
     } catch (error) {
         console.error('Error fetching all appointments:', error);
         res.status(500).json({
@@ -72,31 +107,26 @@ const getAllCompleted = async (req, res, next) => {
 
 
 
-// // Update an appointment by ID
+// // Update an appointment using ID
 // const update = async (req, res) => {
 //     try {
 //         const appointmentId = req.params.id;
 //         const updatedData = req.body;
 
-//         // Update the appointment using the ID
 //         const updatedAppointment = await appointmentService.findByIdAndUpdate(
 //             appointmentId,
 //             updatedData,
 //             { new: true }
 //         );
-
-//         // Check if appointment was found and updated
 //         if (!updatedAppointment) {
 //             return res.status(404).json({ message: 'Appointment not found' });
 //         }
 
-//         // Send success response
 //         res.status(200).json({
 //             message: 'Appointment updated successfully',
 //             appointment: updatedAppointment,
 //         });
 //     } catch (error) {
-//         // Handle error and send error response
 //         res.status(500).json({
 //             message: 'Error updating appointment',
 //             error,
@@ -104,20 +134,16 @@ const getAllCompleted = async (req, res, next) => {
 //     }
 // };
 
-// Delete an appointment by ID
+// Delete the appointment using ID
 const remove = async (req, res) => {
     try {
         const id = req.params.id;
-
-        // Delete the appointment using the ID
         const deletedAppointment = await appointmentService.deleteAppointmentById(id);
-
 
         if (!deletedAppointment) {
             return res.status(404).json({ message: 'Appointment not found', deletedAppointment });
         }
 
-        // Send success response
         res.status(200).json({
             message: 'Appointment deleted successfully',
         });
@@ -128,7 +154,9 @@ const remove = async (req, res) => {
 
 module.exports = {
     create,
+    createCourse,
     getAll,
+    getAllCourse,
     completeAppointment,
     getAllCompleted,
     // update,

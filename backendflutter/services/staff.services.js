@@ -26,13 +26,13 @@ class staffService {
         try {
             console.log(`Attempting to delete staff with ID: ${id}`);
             const deletedStaff = await staffModel.findByIdAndDelete(id);
-            // If deletedAppointment is null, it means the appointment was not found
+
             if (!deletedStaff) {
                 console.error(`Staff not found with ID: ${id}`);
                 throw new Error('Staff not found');
             }
         
-            // Return the deleted appointment data
+
             console.log(`Staff detail deleted successfully with ID: ${id}`);
             return deletedStaff;
         } catch (error) {

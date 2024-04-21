@@ -1,24 +1,34 @@
-const { appointmentModel, completedAppointmentModel } = require('../model/appointment.model'); 
-
+const { appointmentModel, courseModel, completedAppointmentModel} = require('../model/appointment.model'); 
+ 
 class appointmentService {
-    // Create a new appointment
+    // Creating a new appointment
     static async createAppointment(username,choosedService,choosedServiceType,choosedServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,choosedTime,totalPrice) {
         try {
-            // Create new appointment instance
+            // Creating instance for new appointment 
             const appointment = new appointmentModel({username,choosedService,choosedServiceType,choosedServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,choosedTime,totalPrice});
             
-            return await appointment.save(); // Saving the appointment details to the database
+            return await appointment.save(); 
         } catch (err) {
             throw err;
         }
     }
 
-    
+    // Creating a new course appointment
+    static async createCourseAppointment(username,choosedService,totalPrice) {
+        try {
+            // Creating instance for new course appointment 
+            const courseAppointment = new courseModel({username,choosedService,totalPrice});
+            
+            return await courseAppointment.save(); 
+        } catch (err) {
+            throw err;
+        }
+    }
 
-    // Get all appointments
+
+    // Gettnig all appointments from database
     static async getAllAppointments() {
         try {
-            // Retrieve all appointments from the database
             const appointments = await appointmentModel.find();
             return appointments;
         } catch (err) {
@@ -27,21 +37,33 @@ class appointmentService {
         }
     }
 
-    // Complete an appointment
+
+    // Gettnig all booked course details from database
+    static async getAllCourses() {
+        try {
+            const courses = await courseModel.find();
+            return courses;
+        } catch (err) {
+            console.error('Error fetching all appointments:', error);
+            throw err;
+        }
+    }
+
+    // Completion of an appointment
     static async completeAppointment(updatedAppointment) {
         console.log('Received appointment ID:',updatedAppointment.id);
         try {
-            // Find the appointment by ID in the main appointments collection
+            // Find the appointment details by ID in the main appointments collection from database
             const appointment = await appointmentModel.findById(updatedAppointment.id);
            
             if (!appointment) {
                 throw new Error('Appointment not found');
             }
 
-            // Convert the appointment document to an object and save it to the completed appointments collection
+            // Saving appointment details to new collection completed appointments in database
             const completedAppointment = new completedAppointmentModel(
                 {
-                //id: updatedAppointment.id,
+                id: updatedAppointment.id,
                 username: appointment.username,
                 choosedService: appointment.choosedService,
                 choosedServiceType: appointment.choosedServiceType,
@@ -53,12 +75,12 @@ class appointmentService {
                 selectedDate: appointment.selectedDate,
                 choosedTime: appointment.choosedTime,
                 totalPrice: appointment.totalPrice,
-                feedback: appointment.feedback,}
+                feedback: updatedAppointment.feedback,}
             );
          
             await completedAppointment.save();
 
-            // Optionally, delete the appointment from the main collection
+            // Dlete the appointment from the appointment collection as it is marked as completed
             await appointmentModel.findByIdAndDelete(updatedAppointment.id);
 
             return completedAppointment;
@@ -68,7 +90,7 @@ class appointmentService {
             throw error;
         }
     }
-    // Get an appointment by ID
+    // Getting appointment details using ID
     static async findById(id) {
         try {
             return await appointmentModel.findById(id);
@@ -78,10 +100,9 @@ class appointmentService {
         }
     }
 
-    // Get all completed appointments
+    // Geting all completed appointments
     static async getAllCompletedAppointments() {
         try {
-            // Retrieve all completed appointments from the database
             const completedAppointments = await completedAppointmentModel.find();
             return completedAppointments;
         } catch (error) {
@@ -90,24 +111,19 @@ class appointmentService {
         }
     }
 
-    // Delete an appointment by ID
+    // Deleting an appointment using ID
     static async deleteAppointmentById(id) {
         try {
             console.log(`Attempting to delete appointment with ID: ${id}`);
             const deletedAppointment = await appointmentModel.findByIdAndDelete(id);
-            // If deletedAppointment is null, it means the appointment was not found
+
             if (!deletedAppointment) {
                 console.error(`Appointment not found with ID: ${id}`);
                 throw new Error('Appointment not found');
             }
         
-            // Return the deleted appointment data
             console.log(`Appointment deleted successfully with ID: ${id}`);
             return deletedAppointment;
-                // res.status(200).json({
-                //     status: true,
-                //     message: 'Appointment deleted successfully',
-                // });
         } catch (error) {
             console.error('Error deleting appointment:', error);
             throw error;

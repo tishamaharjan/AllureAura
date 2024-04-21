@@ -71,7 +71,6 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Add your other widgets and content here
                 SizedBox(height: 50.0),
                 Text(
                   'Welcome to Allure Aura!',
@@ -81,7 +80,6 @@ class _HomeState extends State<Home> {
                     color: Color(0xFF7743DB),
                   ),
                 ),
-
                 SizedBox(height: 50.0),
                 Text(
                   'Please, choose your desired option.',
@@ -90,9 +88,7 @@ class _HomeState extends State<Home> {
                     color: Color(0xFF7743DB),
                   ),
                 ),
-
                 SizedBox(height: 30.0),
-
                 Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Column(

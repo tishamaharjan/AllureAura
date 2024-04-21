@@ -32,7 +32,7 @@ const userSchema = new Schema({
 userSchema.pre('save', async function(){
     try{
         
-        //Initializing salt for incrypting password and stroing in hashpass
+        //Initializing salt for incrypting password and stroing in hashedpass
         const salt = await(bcrypt.genSalt(10));
         const hashedpass = await bcrypt.hash(this.password,salt);
 

@@ -92,7 +92,7 @@ class _UrgentState extends State<Urgent> {
                       child: Text(
                         'Yes',
                         style: TextStyle(
-                          color: Color(0xFF7743DB), // Text color of the button
+                          color: Color(0xFF7743DB),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -127,7 +127,7 @@ class _UrgentState extends State<Urgent> {
                       child: Text(
                         'No',
                         style: TextStyle(
-                          color: Color(0xFF7743DB), // Text color of the button
+                          color: Color(0xFF7743DB),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

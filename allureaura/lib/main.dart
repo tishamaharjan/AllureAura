@@ -30,7 +30,6 @@ void main() async {
       ),
     );
   } catch (e) {
-    // Handle any errors here, such as showing an error message to the user.
     print("Error initializing app: $e");
   }
 }
@@ -66,14 +65,14 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  // A function to extract the username from the JWT token
+  // Extracting the username from the JWT token
   String getUsernameFromToken(String? token) {
     if (token == null || token.isEmpty) {
       return '';
     }
-    // Decode the JWT token and get the payload
+    // Decoding the JWT token and get the payload
     Map<String, dynamic> payload = JwtDecoder.decode(token);
-    // Assuming the payload contains a 'username' field
+    // Assuming that payload contains a 'username' field
     return payload['username'] ?? '';
   }
 }

@@ -46,9 +46,22 @@ const appointmentSchema = new Schema({
     },
     totalPrice: {
         type: Number,
-        //required: true,
     },
 
+});
+
+const courseSchema = new Schema({
+    username:{
+        type: String, 
+        
+    },
+    choosedService:{
+        type: String, 
+        
+    },  
+    totalPrice: {
+        type: Number,
+    },
 });
 
 
@@ -103,9 +116,11 @@ const completeAppointmentSchema = new Schema({
 });
 
 const appointmentModel = db.model('Appointment', appointmentSchema);
+const courseModel = db.model('Course', courseSchema);
 const completedAppointmentModel = db.model('CompletedAppointment', completeAppointmentSchema);
 
 module.exports = {
     appointmentModel,
+    courseModel,
     completedAppointmentModel
 };

@@ -1,5 +1,5 @@
-import 'package:allureaura/BookBtn/payment.dart';
 import 'package:allureaura/appointmentDetails.dart';
+import 'package:allureaura/courseinvoice.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 
@@ -13,6 +13,7 @@ class Courses extends StatefulWidget {
 
 class _CoursesState extends State<Courses> {
   late String Username;
+  late String ChoosedCourseService;
   int CoursePrice = 0;
 
   @override
@@ -20,6 +21,7 @@ class _CoursesState extends State<Courses> {
     super.initState();
 
     Username = widget.appointment.username;
+    ChoosedCourseService = widget.appointment.choosedCourseService ?? '';
   }
 
   Widget build(BuildContext context) {
@@ -71,11 +73,15 @@ class _CoursesState extends State<Courses> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose(
+                                          builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
                                                     choosedService:
-                                                        'choosedService'),
+                                                        'ChoosedService',
+                                                    choosedCourseService:
+                                                        ChoosedCourseService,
+                                                    totalCoursePrice:
+                                                        CoursePrice),
                                               )));
                                 },
                                 child: Text(
@@ -106,14 +112,22 @@ class _CoursesState extends State<Courses> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedCourseService = 'Full Course';
+                                    CoursePrice = 20000;
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose(
+                                          builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
                                                     choosedService:
-                                                        'choosedService'),
+                                                        'ChoosedService',
+                                                    choosedCourseService:
+                                                        ChoosedCourseService,
+                                                    totalCoursePrice:
+                                                        CoursePrice),
                                               )));
                                 },
                                 child: Text(
@@ -144,14 +158,22 @@ class _CoursesState extends State<Courses> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
+                                  setState(() {
+                                    ChoosedCourseService = 'Hair';
+                                    CoursePrice = 8000;
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => PayChoose(
+                                          builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
                                                     choosedService:
-                                                        'choosedService'),
+                                                        'ChoosedService',
+                                                    choosedCourseService:
+                                                        ChoosedCourseService,
+                                                    totalCoursePrice:
+                                                        CoursePrice),
                                               )));
                                 },
                                 child: Text(

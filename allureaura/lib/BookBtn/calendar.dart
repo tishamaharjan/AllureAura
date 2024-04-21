@@ -1,6 +1,5 @@
 import 'package:allureaura/BookBtn/time.dart';
 import 'package:allureaura/appointmentDetails.dart';
-//import 'package:allureaura/config.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -26,20 +25,6 @@ class _DateState extends State<Date> {
   late DateTime calDate;
   String SelectedDateOnly = 'SelectedDateOnly';
 
-  // Future<void> _selectDate(BuildContext context) async {
-  //   final DateTime? selected = await showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime.now(),
-  //     lastDate: DateTime(2100),
-  //   );
-  //   if (selected != null) {
-  //     setState(() {
-  //       selectedDate = selected;
-  //     });
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -53,7 +38,8 @@ class _DateState extends State<Date> {
     UrgentBook = widget.appointment.urgentBook ?? '';
     UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
     selectedDate = DateTime.now();
-    calDate = DateTime.now().add((Duration(days: 3)));
+    calDate = DateTime.now()
+        .add((Duration(days: 3))); // Adding 3 days in current date
   }
 
   @override
@@ -89,7 +75,6 @@ class _DateState extends State<Date> {
                     ),
                   ),
                   SizedBox(height: 50.0),
-
                   TableCalendar(
                     focusedDay: calDate,
                     firstDay: DateTime.now().add(Duration(
@@ -105,38 +90,6 @@ class _DateState extends State<Date> {
                       });
                     },
                   ),
-
-                  // if (widget.appointment.urgentBook == 'No')
-                  //   TableCalendar(
-                  //     focusedDay: calDate,
-                  //     firstDay: DateTime.now().add(Duration(days: 3)),
-                  //     lastDay: DateTime(2100),
-                  //     selectedDayPredicate: (day) {
-                  //       return isSameDay(selectedDate, day);
-                  //     },
-                  //     onDaySelected: (selectedDay, focusedDay) {
-                  //       setState(() {
-                  //         selectedDate = selectedDay;
-                  //         calDate = focusedDay;
-                  //       });
-                  //     },
-                  //   ),
-                  // if (widget.appointment.urgentBook == 'Yes')
-                  //   TableCalendar(
-                  //     focusedDay: calDate,
-                  //     firstDay: DateTime.now(),
-                  //     lastDay: DateTime(2100),
-                  //     selectedDayPredicate: (day) {
-                  //       return isSameDay(selectedDate, day);
-                  //     },
-                  //     onDaySelected: (selectedDay, focusedDay) {
-                  //       setState(() {
-                  //         selectedDate = selectedDay;
-                  //         calDate = focusedDay;
-                  //       });
-                  //     },
-                  //   ),
-
                   SizedBox(
                     height: 50.0,
                     width: MediaQuery.of(context).size.width * 0.5,
@@ -167,23 +120,13 @@ class _DateState extends State<Date> {
                       child: Text(
                         'Next',
                         style: TextStyle(
-                          color: Color(0xFF7743DB), // Text color of the button
+                          color: Color(0xFF7743DB),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                  // _selectedDate == null
-                  //     ? Text('No date selected')
-                  //     : Text(
-                  //         'Selected Date: ${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
-                  //       ),
-                  // SizedBox(height: 50.0),
-                  // ElevatedButton(
-                  //   onPressed: () => _selectDate(context),
-                  //   child: Text('Select Date'),
-                  // ),
                 ]),
           ),
         ),

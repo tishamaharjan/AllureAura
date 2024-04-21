@@ -121,7 +121,7 @@ class _HistoryState extends State<History> {
           completedAppointmentsFuture =
               fetchCompletedAppointments(); // Refresh completed appointments list
         });
-        // Show a success notification
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content:
@@ -129,7 +129,6 @@ class _HistoryState extends State<History> {
           ),
         );
       } else {
-        // Show an error notification
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -186,7 +185,7 @@ class _HistoryState extends State<History> {
       });
       // Show a success notification
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Appointment canceled successfully.')),
+        SnackBar(content: Text('Appointment canceled.')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -360,14 +359,12 @@ class _HistoryState extends State<History> {
                       // Loading indicator while waiting for data
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
-                      // Display error message if there is an error
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (snapshot.hasData) {
-                      // If data is available, build the list of appointments
+                      // If data is available, building the list of appointments
                       List<Appointment> appointments = snapshot.data!;
                       return buildAppointmentList(appointments);
                     } else {
-                      // No data available
                       return const Center(child: Text('No appointments found'));
                     }
                   },
@@ -392,14 +389,12 @@ class _HistoryState extends State<History> {
                       // Loading indicator while waiting for data
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
-                      // Display error message if there is an error
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (snapshot.hasData) {
-                      // If data is available, build the list of completed appointments
+                      // If data is available, building the list of completed appointments
                       List<Appointment> appointments = snapshot.data!;
                       return buildCompletedAppointmentList(appointments);
                     } else {
-                      // No data available
                       return const Center(
                           child: Text('No completed appointments found'));
                     }

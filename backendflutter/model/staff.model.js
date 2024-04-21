@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const db = require('../config/db');
 
-//const { Schema } = mongoose; 
-const staffSchema = new mongoose.Schema({
+const { Schema } = mongoose; 
+const staffSchema = new Schema({
     staffId: {
         type: String,
         lowercase: true,

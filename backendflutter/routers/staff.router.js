@@ -3,11 +3,11 @@ const staffController = require('../controller/staff.controller');
 
 const cors = require('cors');
 
-
+// Configuring and applying CORS to staffrouter
 const corsOptions = {
-    origin: 'http://localhost:3000', // Allow requests from the front-end origin
-    methods: ['POST','GET','DELETE'], // Specify allowed methods 
-    credentials: true, // Allow credentials (e.g., cookies)
+    origin: 'http://localhost:3000', 
+    methods: ['POST','GET','DELETE'], 
+    credentials: true, 
 };
 staffrouter.use(cors(corsOptions));
 
