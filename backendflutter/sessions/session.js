@@ -6,12 +6,12 @@ exports.sessionMiddleware = session({
     saveUninitialized: true
 });
 
-//For setting session data
+//Setting session data
 exports.setSessionData = (req, key, value) => {
     req.session[key] = value;
 };
 
-//For getting session data
+//Getting session data
 exports.getSessionData = (req, key) => {
     return req.session[key];
 };

@@ -62,24 +62,21 @@ class Appointment {
   }
 
   // Define the toJson method
-  // Map<String, dynamic> toJson() {
-  //   return {
-  //     '_id': id,
-  //     'username': username,
-  //     'choosedService': choosedService,
-  //     'choosedServiceType': choosedServiceType,
-  //     'choosedServicePrice': choosedServicePrice,
-  //     'service': service,
-  //     'homeServicePrice': homeServicePrice,
-  //     'urgentBook': urgentBook,
-  //     'urgentBookPrice': urgentBookPrice,
-  //     'selectedDate': selectedDate?.toIso8601String(),
-  //     'choosedTime': choosedTime,
-  //     'totalPrice': totalPrice,
-  //     'fullname': fullname,
-  //     'email': email,
-  //     'phonenumber': phonenumber,
-  //     'feedback': feedback,
-  //   };
-  //}
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'username': username,
+      'choosedService': choosedService,
+      'choosedServiceType': choosedServiceType,
+      'choosedServicePrice': choosedServicePrice,
+      'service': service,
+      'homeServicePrice': homeServicePrice,
+      'urgentBook': urgentBook,
+      'urgentBookPrice': urgentBookPrice,
+      'selectedDate': selectedDate?.toIso8601String(),
+      'choosedTime': choosedTime,
+      'totalPrice': totalPrice,
+      'feedback': feedback,
+    };
+  }
 }

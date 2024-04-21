@@ -1,4 +1,4 @@
-const app = require ('./app'); //importing everything from app.js
+const app = require ('./app'); 
 const db = require('./config/db')
 const userModel = require('./model/user.model')
 

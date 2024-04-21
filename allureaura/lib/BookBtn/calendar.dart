@@ -1,5 +1,6 @@
 import 'package:allureaura/BookBtn/time.dart';
 import 'package:allureaura/appointmentDetails.dart';
+//import 'package:allureaura/config.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -52,7 +53,7 @@ class _DateState extends State<Date> {
     UrgentBook = widget.appointment.urgentBook ?? '';
     UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
     selectedDate = DateTime.now();
-    calDate = DateTime.now();
+    calDate = DateTime.now().add((Duration(days: 3)));
   }
 
   @override
@@ -88,9 +89,11 @@ class _DateState extends State<Date> {
                     ),
                   ),
                   SizedBox(height: 50.0),
+
                   TableCalendar(
                     focusedDay: calDate,
-                    firstDay: DateTime.now(),
+                    firstDay: DateTime.now().add(Duration(
+                        days: widget.appointment.urgentBook == 'No' ? 3 : 0)),
                     lastDay: DateTime(2100),
                     selectedDayPredicate: (day) {
                       return isSameDay(selectedDate, day);
@@ -102,6 +105,37 @@ class _DateState extends State<Date> {
                       });
                     },
                   ),
+
+                  // if (widget.appointment.urgentBook == 'No')
+                  //   TableCalendar(
+                  //     focusedDay: calDate,
+                  //     firstDay: DateTime.now().add(Duration(days: 3)),
+                  //     lastDay: DateTime(2100),
+                  //     selectedDayPredicate: (day) {
+                  //       return isSameDay(selectedDate, day);
+                  //     },
+                  //     onDaySelected: (selectedDay, focusedDay) {
+                  //       setState(() {
+                  //         selectedDate = selectedDay;
+                  //         calDate = focusedDay;
+                  //       });
+                  //     },
+                  //   ),
+                  // if (widget.appointment.urgentBook == 'Yes')
+                  //   TableCalendar(
+                  //     focusedDay: calDate,
+                  //     firstDay: DateTime.now(),
+                  //     lastDay: DateTime(2100),
+                  //     selectedDayPredicate: (day) {
+                  //       return isSameDay(selectedDate, day);
+                  //     },
+                  //     onDaySelected: (selectedDay, focusedDay) {
+                  //       setState(() {
+                  //         selectedDate = selectedDay;
+                  //         calDate = focusedDay;
+                  //       });
+                  //     },
+                  //   ),
 
                   SizedBox(
                     height: 50.0,

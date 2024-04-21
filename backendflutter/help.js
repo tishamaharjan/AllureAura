@@ -41,7 +41,7 @@ class appointmentService {
             // Convert the appointment document to an object and save it to the completed appointments collection
             const completedAppointment = new completedAppointmentModel(
                 {
-                //id: updatedAppointment.id,
+                id: updatedAppointment.id,
                 username: appointment.username,
                 choosedService: appointment.choosedService,
                 choosedServiceType: appointment.choosedServiceType,

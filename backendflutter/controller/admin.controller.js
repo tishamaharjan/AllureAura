@@ -9,18 +9,13 @@ exports.login = async(req,res,next) => {
 
         if (username === 'admin' && password === 'admin') {
             console.log('IF condition');
-            // Define token data for the admin
-            const tokenData = { username: 'admin', role: 'admin' };
-            
+            const tokenData = { username: 'admin', role: 'admin' };   
 
-            // Generate JWT token for the admin
+            // Generating JWT token for the admin
             const token = jwt.sign(tokenData, "secretKey", { expiresIn: '1h' });
           
-
             // Set the token as a cookie
             res.cookie('cookieToken', token, { maxAge: 3600000, httpOnly: true });
-
-            // Return success response
             return res.status(200).json({ status: true, message: 'Admin login successful', token });
         }
 

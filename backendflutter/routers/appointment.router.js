@@ -6,7 +6,7 @@ const appointmentController = require('../controller/appointment.controller');
 // Configure and apply CORS to this router
 const corsOptions = {
     origin: 'http://localhost:3000', // Allow requests from the front-end origin
-    methods: ['POST','GET'], // Specify allowed methods (in this case, POST for login)
+    methods: ['POST','GET','DELETE'], // Specify allowed methods (in this case, POST for login)
     credentials: true, // Allow credentials (e.g., cookies)
 };
 
@@ -26,6 +26,7 @@ approuter.get('/appointment/complete', appointmentController.getAllCompleted);
 
 
 // Route to delete an appointment
-approuter.delete('/appointment/:id', appointmentController.remove);
+approuter.delete('/appointment/:id/complete', appointmentController.remove);
+
 
 module.exports = approuter;

@@ -104,7 +104,8 @@ class _HistoryState extends State<History> {
         selectedDate: appointment.selectedDate,
         choosedTime: appointment.choosedTime,
         totalPrice: appointment.totalPrice,
-        feedback: feedback, // Including feedback in the appointment object
+        feedback: appointment
+            .feedback, // Including feedback in the appointment object
       );
 
       // Sending request to update the completed appointment
@@ -176,7 +177,7 @@ class _HistoryState extends State<History> {
     print('Cancel Appointment ID: ${appointments.id}');
 
     final response = await http.delete(
-      Uri.parse('$appointment/${appointments.id}/complete'),
+      Uri.parse('$appointment/${appointments.id}'),
       headers: {"Content-Type": "application/json"},
     );
 

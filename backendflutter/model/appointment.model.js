@@ -97,7 +97,7 @@ const completeAppointmentSchema = new Schema({
         type: Number,
     },
     feedback: {
-        type: Number,
+        type: String,
     },
 
 });
