@@ -13,20 +13,20 @@ class ManiPedi extends StatefulWidget {
 
 class _ManiPediState extends State<ManiPedi> {
   late String Username;
-  late String ChoosedService;
-  String ChoosedServiceType = 'ChoosedServiceType';
-  int ChoosedServicePrice = 0;
+  late String ChosenService;
+  String ChosenServiceType = 'ChoosedServiceType';
+  int ChosenServicePrice = 0;
 
   @override
   void initState() {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedService = widget.appointment.choosedService;
+    ChosenService = widget.appointment.chosenService;
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.choosedService}');
+    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -71,8 +71,8 @@ class _ManiPediState extends State<ManiPedi> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Hand and Toe';
-                                    ChoosedServicePrice = 5000;
+                                    ChosenServiceType = 'Hand and Toe';
+                                    ChosenServicePrice = 5000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -80,12 +80,12 @@ class _ManiPediState extends State<ManiPedi> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -117,8 +117,8 @@ class _ManiPediState extends State<ManiPedi> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Hand';
-                                    ChoosedServicePrice = 2000;
+                                    ChosenServiceType = 'Hand';
+                                    ChosenServicePrice = 2000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -126,12 +126,12 @@ class _ManiPediState extends State<ManiPedi> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -163,8 +163,8 @@ class _ManiPediState extends State<ManiPedi> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Toe';
-                                    ChoosedServicePrice = 3000;
+                                    ChosenServiceType = 'Toe';
+                                    ChosenServicePrice = 3000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -172,12 +172,12 @@ class _ManiPediState extends State<ManiPedi> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(

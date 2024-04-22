@@ -94,15 +94,15 @@ class _HistoryState extends State<History> {
       Appointment updatedAppointment = Appointment(
         id: appointment.id,
         username: appointment.username,
-        choosedService: appointment.choosedService,
-        choosedServiceType: appointment.choosedServiceType,
-        choosedServicePrice: appointment.choosedServicePrice,
+        chosenService: appointment.chosenService,
+        chosenServiceType: appointment.chosenServiceType,
+        chosenServicePrice: appointment.chosenServicePrice,
         service: appointment.service,
         homeServicePrice: appointment.homeServicePrice,
         urgentBook: appointment.urgentBook,
         urgentBookPrice: appointment.urgentBookPrice,
         selectedDate: appointment.selectedDate,
-        choosedTime: appointment.choosedTime,
+        chosenTime: appointment.chosenTime,
         totalPrice: appointment.totalPrice,
         feedback: appointment
             .feedback, // Including feedback in the appointment object
@@ -230,7 +230,7 @@ class _HistoryState extends State<History> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Service: ${appointment.choosedService}',
+                'Service: ${appointment.chosenService}',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.0,
@@ -239,15 +239,15 @@ class _HistoryState extends State<History> {
               SizedBox(height: 8.0),
               Text('Appointment ID ${appointment.id}'),
               Text('Appointment booked by ${appointment.username}'),
-              Text('Appointment of ${appointment.choosedService}'),
-              Text('Choosed Service: ${appointment.choosedServiceType}'),
-              Text('Choosed Service Price: ${appointment.choosedServicePrice}'),
+              Text('Appointment of ${appointment.chosenService}'),
+              Text('Choosed Service: ${appointment.chosenServiceType}'),
+              Text('Choosed Service Price: ${appointment.chosenServicePrice}'),
               Text('Service: ${appointment.service}'),
               Text('Home Service Price: ${appointment.homeServicePrice}'),
               Text('Urgent Book: ${appointment.urgentBook}'),
               Text('Urgent Service Price: ${appointment.urgentBookPrice}'),
               Text('Date: ${appointment.selectedDate}'),
-              Text('Time: ${appointment.choosedTime}'),
+              Text('Time: ${appointment.chosenTime}'),
               Text('Total Price: ${appointment.totalPrice}'),
 
               // Adding buttons
@@ -305,21 +305,21 @@ class _HistoryState extends State<History> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Service: ${appointment.choosedService}',
+              Text('Service: ${appointment.chosenService}',
                   style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0)),
               SizedBox(height: 8.0),
               Text('Appointment ID: ${appointment.id}'),
               Text('Appointment booked by ${appointment.username}'),
-              Text('Appointment of ${appointment.choosedService}'),
-              Text('Choosed Service: ${appointment.choosedServiceType}'),
-              Text('Choosed Service Price: ${appointment.choosedServicePrice}'),
+              Text('Appointment of ${appointment.chosenService}'),
+              Text('Choosed Service: ${appointment.chosenServiceType}'),
+              Text('Choosed Service Price: ${appointment.chosenServicePrice}'),
               Text('Service: ${appointment.service}'),
               Text('Home Service Price: ${appointment.homeServicePrice}'),
               Text('Urgent Book: ${appointment.urgentBook}'),
               Text('Urgent Service Price: ${appointment.urgentBookPrice}'),
               Text('Date: ${appointment.selectedDate}'),
-              Text('Time: ${appointment.choosedTime}'),
+              Text('Time: ${appointment.chosenTime}'),
               Text('Total Price: ${appointment.totalPrice}'),
               Text('Feedback: ${appointment.feedback}'),
             ],

@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                                 //Creating an instance
                                 Appointment appointment = Appointment(
                                   username: username,
-                                  choosedService: 'Makeup',
+                                  chosenService: 'Makeup',
                                 );
                                 Navigator.pushReplacement(
                                     context,
@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Appointment appointment = Appointment(
                                     username: username,
-                                    choosedService: 'Hair',
+                                    chosenService: 'Hair',
                                   );
                                   Navigator.pushReplacement(
                                       context,
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Appointment appointment = Appointment(
                                     username: username,
-                                    choosedService: 'Nail',
+                                    chosenService: 'Nail',
                                   );
                                   Navigator.pushReplacement(
                                       context,
@@ -144,7 +144,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Appointment appointment = Appointment(
                                     username: username,
-                                    choosedService: 'Skin',
+                                    chosenService: 'Skin',
                                   );
                                   Navigator.pushReplacement(
                                       context,
@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Appointment appointment = Appointment(
                                     username: username,
-                                    choosedService: 'ManiPedi',
+                                    chosenService: 'ManiPedi',
                                   );
                                   Navigator.pushReplacement(
                                       context,
@@ -174,7 +174,7 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Appointment appointment = Appointment(
                                     username: username,
-                                    choosedService: 'Courses',
+                                    chosenService: 'Courses',
                                   );
                                   Navigator.pushReplacement(
                                       context,

@@ -233,7 +233,8 @@ class _ProfileState extends State<Profile> {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xFFD67BFF))),
-                  child: Text('Save Changes'),
+                  child: Text('Save Changes',
+                      style: TextStyle(color: Colors.white, fontSize: 17)),
                 ),
 
                 SizedBox(height: 20),
@@ -257,7 +258,7 @@ class _ProfileState extends State<Profile> {
                         'Logout',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 19,
                         ),
                       ),
                     ],

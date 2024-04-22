@@ -8,15 +8,15 @@ const appointmentSchema = new Schema({
         type: String, 
         
     },
-    choosedService:{
+    chosenService:{
         type: String, 
         
     },
-    choosedServiceType:{
+    chosenServiceType:{
         type: String, 
     
     },
-    choosedServicePrice:{
+    chosenServicePrice:{
         type: Number, 
        
     },
@@ -40,7 +40,7 @@ const appointmentSchema = new Schema({
         type: String,
         
     },
-    choosedTime: {
+    chosenTime: {
         type: String,
        
     },
@@ -55,7 +55,7 @@ const courseSchema = new Schema({
         type: String, 
         
     },
-    choosedService:{
+    chosenService:{
         type: String, 
         
     },  
@@ -70,15 +70,15 @@ const completeAppointmentSchema = new Schema({
         type: String, 
         
     },
-    choosedService:{
+    chosenService:{
         type: String, 
         
     },
-    choosedServiceType:{
+    chosenServiceType:{
         type: String, 
     
     },
-    choosedServicePrice:{
+    chosenServicePrice:{
         type: Number, 
        
     },
@@ -102,7 +102,7 @@ const completeAppointmentSchema = new Schema({
         type: String,
         
     },
-    choosedTime: {
+    chosenTime: {
         type: String,
        
     },

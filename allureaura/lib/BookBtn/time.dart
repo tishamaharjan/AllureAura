@@ -13,25 +13,25 @@ class Time extends StatefulWidget {
 
 class _TimeState extends State<Time> {
   late String Username;
-  late String ChoosedService;
-  late String ChoosedServiceType;
-  late int ChoosedServicePrice;
+  late String ChosenService;
+  late String ChosenServiceType;
+  late int ChosenServicePrice;
   late String Service;
   late int HomeServicePrice;
   late String UrgentBook;
   late int UrgentBookPrice;
   late DateTime SelectedDate;
   late DateTime CalDate;
-  String ChoosedTime = 'Choosed_Time';
+  String ChosenTime = 'ChosenTime';
 
   @override
   void initState() {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedService = widget.appointment.choosedService;
-    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
-    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    ChosenService = widget.appointment.chosenService;
+    ChosenServiceType = widget.appointment.chosenServiceType ?? '';
+    ChosenServicePrice = widget.appointment.chosenServicePrice ?? 0;
     Service = widget.appointment.service ?? '';
     HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
     UrgentBook = widget.appointment.urgentBook ?? '';
@@ -40,12 +40,53 @@ class _TimeState extends State<Time> {
     CalDate = widget.appointment.calDate ?? DateTime.now();
   }
 
+  Future<void> selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime:
+          TimeOfDay(hour: 10, minute: 0), // Set initial time to 10:00 AM
+    );
+    if (picked != null) {
+      if (picked.hour >= 10 && picked.hour < 18) {
+        setState(() {
+          ChosenTime = '${picked.hour}:${picked.minute}';
+        });
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Invoice(
+              appointment: Appointment(
+                username: Username,
+                chosenService: ChosenService,
+                chosenServiceType: ChosenServiceType,
+                chosenServicePrice: ChosenServicePrice,
+                service: Service,
+                homeServicePrice: HomeServicePrice,
+                urgentBook: UrgentBook,
+                urgentBookPrice: UrgentBookPrice,
+                selectedDate: SelectedDate,
+                calDate: CalDate,
+                chosenTime: ChosenTime,
+              ),
+            ),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Please choose a time between 10:00 AM and 6:00 PM.'),
+          ),
+        );
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
-    print('Time choosedServiceType: ${widget.appointment.choosedServiceType}');
-    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
+    print('Time choosedServiceType: ${widget.appointment.chosenServiceType}');
+    print('ChosenServicePrice: ${widget.appointment.chosenServicePrice}');
     print('Urgent Book: ${widget.appointment.urgentBook}');
     print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
-    print('choosedService: ${widget.appointment.choosedService}');
+    print('ChosenService: ${widget.appointment.chosenService}');
     print('Service: ${widget.appointment.service}');
     print('Home Service Price: ${widget.appointment.homeServicePrice}');
     print('Selected Date: ${widget.appointment.selectedDate}');
@@ -55,6 +96,7 @@ class _TimeState extends State<Time> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               color: Color(0xFFE5D4FF),
             ),
@@ -72,304 +114,11 @@ class _TimeState extends State<Time> {
                     ),
                   ),
                   SizedBox(height: 50.0),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: Column(children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '10:30 AM - 12:30 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '10:30 AM - 12:30 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '11:30 AM - 1:30 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '11:30 AM - 1:30 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '12:30 AM - 2:30 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '12:30 AM - 2:30 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '1:30 AM - 3:30 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '1:30 AM - 3:30 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '3:00 AM - 5:00 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '3:00 AM - 5:00 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '4:00 AM - 6:00 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '4:00 AM - 6:00 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            ChoosedTime = '5:00 AM - 6:30 PM';
-                          });
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Invoice(
-                                        appointment: Appointment(
-                                            username: Username,
-                                            choosedService: ChoosedService,
-                                            choosedServiceType:
-                                                ChoosedServiceType,
-                                            choosedServicePrice:
-                                                ChoosedServicePrice,
-                                            service: Service,
-                                            homeServicePrice: HomeServicePrice,
-                                            urgentBook: UrgentBook,
-                                            urgentBookPrice: UrgentBookPrice,
-                                            selectedDate: SelectedDate,
-                                            calDate: CalDate,
-                                            choosedTime: ChoosedTime),
-                                      )));
-                        },
-                        child: Container(
-                          color: Color(0xFFD0A2F7),
-                          margin: EdgeInsets.all(20.0),
-                          padding: EdgeInsets.all(10.0),
-                          height: 60.0,
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          alignment: Alignment.center,
-                          child: Center(
-                              child: Text(
-                            '5:00 AM - 6:30 PM',
-                            style: TextStyle(
-                                color: Color(0xFF7743DB),
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          )),
-                        ),
-                      ),
-                    ]),
+                  ElevatedButton(
+                    onPressed: () {
+                      selectTime(context);
+                    },
+                    child: Text('Choose Time'),
                   ),
                 ]),
           ),

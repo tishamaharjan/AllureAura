@@ -13,9 +13,9 @@ class Book extends StatefulWidget {
 
 class _BookState extends State<Book> {
   late String Username;
-  late String ChoosedService;
-  late String ChoosedServiceType;
-  late int ChoosedServicePrice;
+  late String ChosenService;
+  late String ChosenServiceType;
+  late int ChosenServicePrice;
   String Service = 'Service';
   int HomeServicePrice = 0;
 
@@ -24,16 +24,16 @@ class _BookState extends State<Book> {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedService = widget.appointment.choosedService;
-    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
-    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    ChosenService = widget.appointment.chosenService;
+    ChosenServiceType = widget.appointment.chosenServiceType ?? '';
+    ChosenServicePrice = widget.appointment.chosenServicePrice ?? 0;
   }
 
   Widget build(BuildContext context) {
     print('Book username: ${widget.appointment.username}');
-    print('Book choosedServiceType: ${widget.appointment.choosedServiceType}');
-    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
-    print('choosedService: ${widget.appointment.choosedService}');
+    print('Book Chosen ServiceType: ${widget.appointment.chosenServiceType}');
+    print('choosedServicePrice: ${widget.appointment.chosenServicePrice}');
+    print('choosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -72,11 +72,10 @@ class _BookState extends State<Book> {
                                 builder: (context) => Urgent(
                                       appointment: Appointment(
                                           username: Username,
-                                          choosedService: ChoosedService,
-                                          choosedServiceType:
-                                              ChoosedServiceType,
-                                          choosedServicePrice:
-                                              ChoosedServicePrice,
+                                          chosenService: ChosenService,
+                                          chosenServiceType: ChosenServiceType,
+                                          chosenServicePrice:
+                                              ChosenServicePrice,
                                           service: Service,
                                           homeServicePrice: HomeServicePrice),
                                     )));
@@ -107,11 +106,10 @@ class _BookState extends State<Book> {
                                 builder: (context) => Urgent(
                                       appointment: Appointment(
                                           username: Username,
-                                          choosedService: ChoosedService,
-                                          choosedServiceType:
-                                              ChoosedServiceType,
-                                          choosedServicePrice:
-                                              ChoosedServicePrice,
+                                          chosenService: ChosenService,
+                                          chosenServiceType: ChosenServiceType,
+                                          chosenServicePrice:
+                                              ChosenServicePrice,
                                           service: Service,
                                           homeServicePrice: HomeServicePrice),
                                     )));

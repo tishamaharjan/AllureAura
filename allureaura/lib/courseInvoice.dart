@@ -21,7 +21,7 @@ class CourseInvoice extends StatefulWidget {
 
 class _CourseInvoiceState extends State<CourseInvoice> {
   late String Username;
-  late String ChoosedCourseService;
+  late String ChosenCourseService;
   late int TotalCoursePrice;
 
   @override
@@ -29,7 +29,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedCourseService = widget.appointment.choosedCourseService ?? "";
+    ChosenCourseService = widget.appointment.chosenCourseService ?? "";
     TotalCoursePrice = widget.appointment.totalCoursePrice ?? 0;
   }
 
@@ -38,7 +38,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
       print('1 Course Here');
       var courseDetails = {
         "username": widget.appointment.username,
-        "choosedService": widget.appointment.choosedCourseService,
+        "chosenService": widget.appointment.chosenCourseService,
         "totalPrice": widget.appointment.totalCoursePrice,
       };
       print('2 Course Here');
@@ -67,7 +67,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                       fullname: '',
                       email: '',
                       phonenumber: '',
-                      choosedService: 'choosedService',
+                      chosenService: 'choosedService',
                     ),
                   )),
         );
@@ -118,6 +118,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
         body: SingleChildScrollView(
             child: Container(
                 width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   color: Color(0xFFE5D4FF),
                 ),
@@ -155,7 +156,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                               ),
                             ),
                             Text(
-                              '  Choosed Service:\n  ${widget.appointment.choosedCourseService}\n',
+                              '  Chosen Service:\n  ${widget.appointment.chosenCourseService}\n',
                               style: TextStyle(
                                 fontFamily: 'Arial',
                                 fontSize: 18,

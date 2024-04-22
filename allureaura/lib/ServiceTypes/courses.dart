@@ -13,7 +13,7 @@ class Courses extends StatefulWidget {
 
 class _CoursesState extends State<Courses> {
   late String Username;
-  late String ChoosedCourseService;
+  late String ChosenCourseService;
   int CoursePrice = 0;
 
   @override
@@ -21,11 +21,11 @@ class _CoursesState extends State<Courses> {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedCourseService = widget.appointment.choosedCourseService ?? '';
+    ChosenCourseService = widget.appointment.chosenCourseService ?? '';
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.choosedService}');
+    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -69,17 +69,20 @@ class _CoursesState extends State<Courses> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  // int = 50000;
+                                  setState(() {
+                                    ChosenCourseService = 'Makeup';
+                                    CoursePrice = 10000;
+                                  });
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        'ChoosedService',
-                                                    choosedCourseService:
-                                                        ChoosedCourseService,
+                                                    chosenService:
+                                                        'ChosenService',
+                                                    chosenCourseService:
+                                                        ChosenCourseService,
                                                     totalCoursePrice:
                                                         CoursePrice),
                                               )));
@@ -113,7 +116,7 @@ class _CoursesState extends State<Courses> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedCourseService = 'Full Course';
+                                    ChosenCourseService = 'Full Course';
                                     CoursePrice = 20000;
                                   });
                                   Navigator.pushReplacement(
@@ -122,10 +125,10 @@ class _CoursesState extends State<Courses> {
                                           builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        'ChoosedService',
-                                                    choosedCourseService:
-                                                        ChoosedCourseService,
+                                                    chosenService:
+                                                        'ChosenService',
+                                                    chosenCourseService:
+                                                        ChosenCourseService,
                                                     totalCoursePrice:
                                                         CoursePrice),
                                               )));
@@ -159,7 +162,7 @@ class _CoursesState extends State<Courses> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedCourseService = 'Hair';
+                                    ChosenCourseService = 'Hair';
                                     CoursePrice = 8000;
                                   });
                                   Navigator.pushReplacement(
@@ -168,10 +171,10 @@ class _CoursesState extends State<Courses> {
                                           builder: (context) => CourseInvoice(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        'ChoosedService',
-                                                    choosedCourseService:
-                                                        ChoosedCourseService,
+                                                    chosenService:
+                                                        'ChosenService',
+                                                    chosenCourseService:
+                                                        ChosenCourseService,
                                                     totalCoursePrice:
                                                         CoursePrice),
                                               )));

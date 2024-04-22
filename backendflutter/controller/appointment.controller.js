@@ -4,9 +4,9 @@ const appointmentService = require('../services/appointment.services'); // Impor
 const create = async (req, res, next) => {
     try {
         // Extracting appointment details
-        const { username, choosedService, choosedServiceType, choosedServicePrice, service, homeServicePrice, urgentBook, urgentBookPrice, selectedDate, choosedTime, totalPrice } = req.body;
+        const { username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice } = req.body;
         console.log('Received request data:', req.body);
-        const appointment = await appointmentService.createAppointment(username, choosedService, choosedServiceType, choosedServicePrice, service, homeServicePrice, urgentBook, urgentBookPrice, selectedDate, choosedTime, totalPrice);
+        const appointment = await appointmentService.createAppointment(username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice);
 
         res.status(201).json({ status: true, success: 'Appointment created successfully' });
     }
@@ -25,9 +25,9 @@ const create = async (req, res, next) => {
 const createCourse = async (req, res, next) => {
     try {
         // Extract appointment details of course
-        const { username, choosedService, totalPrice } = req.body;
+        const { username, chosenService, totalPrice } = req.body;
         console.log('Received request course:', req.body);
-        const courseAppointment = await appointmentService.createCourseAppointment(username, choosedService, totalPrice);
+        const courseAppointment = await appointmentService.createCourseAppointment(username, chosenService, totalPrice);
 
         res.status(201).json({ status: true, success: 'Course appointment created successfully' });
     }

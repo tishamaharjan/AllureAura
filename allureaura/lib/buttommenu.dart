@@ -77,7 +77,7 @@ class _BottomMenuState extends State<BottomMenu> {
                           builder: (context) => Profile(
                                 appointment: Appointment(
                                     username: widget.username,
-                                    choosedService: 'choosedService'),
+                                    chosenService: 'choosedService'),
                               )),
                     );
                   },
@@ -97,7 +97,7 @@ class _BottomMenuState extends State<BottomMenu> {
                           builder: (context) => History(
                                 appointment: Appointment(
                                     username: widget.username,
-                                    choosedService: 'choosedService'),
+                                    chosenService: 'chosenService'),
                               )),
                     );
                   },

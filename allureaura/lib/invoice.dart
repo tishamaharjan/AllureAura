@@ -22,7 +22,7 @@ class Invoice extends StatefulWidget {
 
 class _InvoiceState extends State<Invoice> {
   late String Username;
-  late int ChoosedServicePrice;
+  late int ChosenServicePrice;
   late int HomeServicePrice;
   late int UrgentBookPrice;
   int TotalPrice = 0;
@@ -34,7 +34,7 @@ class _InvoiceState extends State<Invoice> {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    ChosenServicePrice = widget.appointment.chosenServicePrice ?? 0;
     HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
     UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
   }
@@ -44,15 +44,15 @@ class _InvoiceState extends State<Invoice> {
       print('1  Here');
       var appointmentDetails = {
         "username": widget.appointment.username,
-        "choosedService": widget.appointment.choosedService,
-        "choosedServiceType": widget.appointment.choosedServiceType,
-        "choosedServicePrice": widget.appointment.choosedServicePrice,
+        "chosenService": widget.appointment.chosenService,
+        "chosenServiceType": widget.appointment.chosenServiceType,
+        "chosenServicePrice": widget.appointment.chosenServicePrice,
         "service": widget.appointment.service,
         "homeServicePrice": widget.appointment.homeServicePrice,
         "urgentBook": widget.appointment.urgentBook,
         "urgentBookPrice": widget.appointment.urgentBookPrice,
         "selectedDate": widget.appointment.selectedDate.toString(),
-        "choosedTime": widget.appointment.choosedTime,
+        "chosenTime": widget.appointment.chosenTime,
         "totalPrice": TotalPrice,
       };
       print('2  Here');
@@ -81,7 +81,7 @@ class _InvoiceState extends State<Invoice> {
                       fullname: '',
                       email: '',
                       phonenumber: '',
-                      choosedService: 'choosedService',
+                      chosenService: 'choosedService',
                     ),
                   )),
         );
@@ -127,8 +127,8 @@ class _InvoiceState extends State<Invoice> {
   }
 
   Widget build(BuildContext context) {
-    TotalPrice = ChoosedServicePrice + HomeServicePrice + UrgentBookPrice;
-    print('Selected Time: ${widget.appointment.choosedTime}');
+    TotalPrice = ChosenServicePrice + HomeServicePrice + UrgentBookPrice;
+    print('Selected Time: ${widget.appointment.chosenTime}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -171,7 +171,7 @@ class _InvoiceState extends State<Invoice> {
                               ),
                             ),
                             Text(
-                              '  Choosed Service:\n  ${widget.appointment.choosedService}\n',
+                              '  Chosen Service:\n  ${widget.appointment.chosenService}\n',
                               style: TextStyle(
                                 fontFamily: 'Arial',
                                 fontSize: 18,
@@ -179,7 +179,7 @@ class _InvoiceState extends State<Invoice> {
                               ),
                             ),
                             Text(
-                              '  Choosed Service Type:\n  ${widget.appointment.choosedServiceType ?? '-'}\n',
+                              '  Chosen Service Type:\n  ${widget.appointment.chosenServiceType ?? '-'}\n',
                               style: TextStyle(
                                 fontFamily: 'Arial',
                                 fontSize: 18,
@@ -187,7 +187,7 @@ class _InvoiceState extends State<Invoice> {
                               ),
                             ),
                             Text(
-                              '  Choosed Service Price:\n  ${widget.appointment.choosedServicePrice ?? '-'}\n',
+                              '  Chosen Service Price:\n  ${widget.appointment.chosenServicePrice ?? '-'}\n',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -234,7 +234,7 @@ class _InvoiceState extends State<Invoice> {
                               ),
                             ),
                             Text(
-                              '  Choosed Time:\n  ${widget.appointment.choosedTime ?? '-'}',
+                              '  Chosen Time:\n  ${widget.appointment.chosenTime ?? '-'}',
                               style: TextStyle(
                                 fontFamily: 'Arial',
                                 fontSize: 18,

@@ -2,10 +2,10 @@ const { appointmentModel, courseModel, completedAppointmentModel} = require('../
  
 class appointmentService {
     // Creating a new appointment
-    static async createAppointment(username,choosedService,choosedServiceType,choosedServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,choosedTime,totalPrice) {
+    static async createAppointment(username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice) {
         try {
             // Creating instance for new appointment 
-            const appointment = new appointmentModel({username,choosedService,choosedServiceType,choosedServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,choosedTime,totalPrice});
+            const appointment = new appointmentModel({username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice});
             
             return await appointment.save(); 
         } catch (err) {
@@ -14,10 +14,10 @@ class appointmentService {
     }
 
     // Creating a new course appointment
-    static async createCourseAppointment(username,choosedService,totalPrice) {
+    static async createCourseAppointment(username,chosenService,totalPrice) {
         try {
             // Creating instance for new course appointment 
-            const courseAppointment = new courseModel({username,choosedService,totalPrice});
+            const courseAppointment = new courseModel({username,chosenService,totalPrice});
             
             return await courseAppointment.save(); 
         } catch (err) {
@@ -65,15 +65,15 @@ class appointmentService {
                 {
                 id: updatedAppointment.id,
                 username: appointment.username,
-                choosedService: appointment.choosedService,
-                choosedServiceType: appointment.choosedServiceType,
-                choosedServicePrice: appointment.choosedServicePrice,
+                chosenService: appointment.chosenService,
+                chosenServiceType: appointment.chosenServiceType,
+                chosenServicePrice: appointment.chosenServicePrice,
                 service: appointment.service,
                 homeServicePrice: appointment.homeServicePrice,
                 urgentBook: appointment.urgentBook,
                 urgentBookPrice: appointment.urgentBookPrice,
                 selectedDate: appointment.selectedDate,
-                choosedTime: appointment.choosedTime,
+                chosenTime: appointment.chosenTime,
                 totalPrice: appointment.totalPrice,
                 feedback: updatedAppointment.feedback,}
             );

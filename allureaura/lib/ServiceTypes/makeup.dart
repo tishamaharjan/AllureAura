@@ -13,20 +13,20 @@ class Makeup extends StatefulWidget {
 
 class _MakeupState extends State<Makeup> {
   late String Username;
-  late String ChoosedService;
-  String ChoosedServiceType = 'ChoosedServiceType';
-  int ChoosedServicePrice = 0;
+  late String ChosenService;
+  String ChosenServiceType = 'ChosenServiceType';
+  int ChosenServicePrice = 0;
 
   @override
   void initState() {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedService = widget.appointment.choosedService;
+    ChosenService = widget.appointment.chosenService;
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.choosedService}');
+    print('ChoosedService: ${widget.appointment.chosenService}');
 
     return SafeArea(
       child: Scaffold(
@@ -72,8 +72,8 @@ class _MakeupState extends State<Makeup> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Bridal Makeup';
-                                    ChoosedServicePrice = 50000;
+                                    ChosenServiceType = 'Bridal Makeup';
+                                    ChosenServicePrice = 50000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -81,12 +81,12 @@ class _MakeupState extends State<Makeup> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -118,8 +118,8 @@ class _MakeupState extends State<Makeup> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Party Makeup';
-                                    ChoosedServicePrice = 10000;
+                                    ChosenServiceType = 'Party Makeup';
+                                    ChosenServicePrice = 10000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -127,12 +127,12 @@ class _MakeupState extends State<Makeup> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(
@@ -164,8 +164,8 @@ class _MakeupState extends State<Makeup> {
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {
-                                    ChoosedServiceType = 'Simple Makeup';
-                                    ChoosedServicePrice = 5000;
+                                    ChosenServiceType = 'Simple Makeup';
+                                    ChosenServicePrice = 5000;
                                   });
                                   Navigator.pushReplacement(
                                       context,
@@ -173,12 +173,12 @@ class _MakeupState extends State<Makeup> {
                                           builder: (context) => Book(
                                                 appointment: Appointment(
                                                     username: Username,
-                                                    choosedService:
-                                                        ChoosedService,
-                                                    choosedServiceType:
-                                                        ChoosedServiceType,
-                                                    choosedServicePrice:
-                                                        ChoosedServicePrice),
+                                                    chosenService:
+                                                        ChosenService,
+                                                    chosenServiceType:
+                                                        ChosenServiceType,
+                                                    chosenServicePrice:
+                                                        ChosenServicePrice),
                                               )));
                                 },
                                 child: Text(

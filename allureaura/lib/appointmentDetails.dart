@@ -1,16 +1,16 @@
 class Appointment {
   final String? id;
   final String username;
-  final String choosedService;
-  final String? choosedServiceType;
-  final int? choosedServicePrice;
+  final String chosenService;
+  final String? chosenServiceType;
+  final int? chosenServicePrice;
   final String? service;
   final int? homeServicePrice;
   final String? urgentBook;
   final int? urgentBookPrice;
   final DateTime? selectedDate;
   final DateTime? calDate;
-  final String? choosedTime;
+  final String? chosenTime;
   final int? totalPrice;
 
   final String? fullname;
@@ -18,28 +18,28 @@ class Appointment {
   final String? phonenumber;
   final String? feedback;
 
-  final String? choosedCourseService;
+  final String? chosenCourseService;
   final int? totalCoursePrice;
 
   Appointment({
     this.id,
     required this.username,
-    required this.choosedService,
-    this.choosedServiceType,
-    this.choosedServicePrice,
+    required this.chosenService,
+    this.chosenServiceType,
+    this.chosenServicePrice,
     this.service,
     this.homeServicePrice,
     this.urgentBook,
     this.urgentBookPrice,
     this.selectedDate,
     this.calDate,
-    this.choosedTime,
+    this.chosenTime,
     this.totalPrice,
     this.fullname,
     this.email,
     this.phonenumber,
     this.feedback,
-    this.choosedCourseService,
+    this.chosenCourseService,
     this.totalCoursePrice,
   });
 
@@ -47,9 +47,9 @@ class Appointment {
     return Appointment(
       id: json['_id'],
       username: json['username'],
-      choosedService: json['choosedService'],
-      choosedServiceType: json['choosedServiceType'] ?? 'Unknown Type',
-      choosedServicePrice: json['choosedServicePrice'] as int?,
+      chosenService: json['chosenService'],
+      chosenServiceType: json['chosenServiceType'] ?? 'Unknown Type',
+      chosenServicePrice: json['chosenServicePrice'] as int?,
       service: json['service'],
       homeServicePrice: json['homeServicePrice'],
       urgentBook: json['urgentBook'],
@@ -57,7 +57,7 @@ class Appointment {
       selectedDate: json['selectedDate'] != null
           ? DateTime.parse(json['selectedDate'])
           : null,
-      choosedTime: json['choosedTime'],
+      chosenTime: json['chosenTime'],
       totalPrice: json['totalPrice'],
       fullname: json['fullname'],
       email: json['email'],
@@ -71,15 +71,15 @@ class Appointment {
     return {
       'id': id,
       'username': username,
-      'choosedService': choosedService,
-      'choosedServiceType': choosedServiceType,
-      'choosedServicePrice': choosedServicePrice,
+      'chosenService': chosenService,
+      'chosenServiceType': chosenServiceType,
+      'chosenServicePrice': chosenServicePrice,
       'service': service,
       'homeServicePrice': homeServicePrice,
       'urgentBook': urgentBook,
       'urgentBookPrice': urgentBookPrice,
       'selectedDate': selectedDate?.toIso8601String(),
-      'choosedTime': choosedTime,
+      'chosenTime': chosenTime,
       'totalPrice': totalPrice,
       'feedback': feedback,
     };

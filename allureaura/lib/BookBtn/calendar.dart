@@ -14,9 +14,9 @@ class Date extends StatefulWidget {
 
 class _DateState extends State<Date> {
   late String Username;
-  late String ChoosedService;
-  late String ChoosedServiceType;
-  late int ChoosedServicePrice;
+  late String ChosenService;
+  late String ChosenServiceType;
+  late int ChosenServicePrice;
   late String Service;
   late int HomeServicePrice;
   late String UrgentBook;
@@ -30,9 +30,9 @@ class _DateState extends State<Date> {
     super.initState();
 
     Username = widget.appointment.username;
-    ChoosedService = widget.appointment.choosedService;
-    ChoosedServiceType = widget.appointment.choosedServiceType ?? '';
-    ChoosedServicePrice = widget.appointment.choosedServicePrice ?? 0;
+    ChosenService = widget.appointment.chosenService;
+    ChosenServiceType = widget.appointment.chosenServiceType ?? '';
+    ChosenServicePrice = widget.appointment.chosenServicePrice ?? 0;
     Service = widget.appointment.service ?? '';
     HomeServicePrice = widget.appointment.homeServicePrice ?? 0;
     UrgentBook = widget.appointment.urgentBook ?? '';
@@ -45,11 +45,11 @@ class _DateState extends State<Date> {
   @override
   Widget build(BuildContext context) {
     print(
-        'Calender choosedServiceType: ${widget.appointment.choosedServiceType}');
-    print('choosedServicePrice: ${widget.appointment.choosedServicePrice}');
+        'Calender Chosen Service Type: ${widget.appointment.chosenServiceType}');
+    print('Chosen Service Price: ${widget.appointment.chosenServicePrice}');
     print('Urgent Book: ${widget.appointment.urgentBook}');
     print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
-    print('choosedService: ${widget.appointment.choosedService}');
+    print('Chosen Service: ${widget.appointment.chosenService}');
     print('Service: ${widget.appointment.service}');
     print('Home Service Price: ${widget.appointment.homeServicePrice}');
     return SafeArea(
@@ -104,11 +104,10 @@ class _DateState extends State<Date> {
                                 builder: (context) => Time(
                                       appointment: Appointment(
                                           username: Username,
-                                          choosedService: ChoosedService,
-                                          choosedServiceType:
-                                              ChoosedServiceType,
-                                          choosedServicePrice:
-                                              ChoosedServicePrice,
+                                          chosenService: ChosenService,
+                                          chosenServiceType: ChosenServiceType,
+                                          chosenServicePrice:
+                                              ChosenServicePrice,
                                           service: Service,
                                           homeServicePrice: HomeServicePrice,
                                           urgentBook: UrgentBook,
