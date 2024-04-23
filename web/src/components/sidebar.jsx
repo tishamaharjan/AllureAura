@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from 'react-router-dom';
-import { FaTh, FaHome, FaBars, FaUserAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaBars, FaList, FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 import logo from "../img/logo.png";
-import { height } from "@fortawesome/free-solid-svg-icons/fa0";
+
 
 
 const SideBar = ({ children }) => {
@@ -21,17 +21,22 @@ const SideBar = ({ children }) => {
         {
             path: "/appointmentHistory",
             name: "History",
-            icon: <FaTh />
+            icon: <FaList />
         },
         {
             path: "/courseBooked",
             name: "CourseHistory",
-            icon: <FaUserAlt />
+            icon: <FaList />
         },
         {
             path: "/staffProfile",
             name: "StaffProfile",
             icon: <FaUserAlt />
+        },
+        {
+            path: "/waitingList",
+            name: "WaitingList",
+            icon: <FaList />
         },
         {
             path: "/login",
@@ -52,7 +57,7 @@ const SideBar = ({ children }) => {
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo"><img style={{height: "50px", width: "50px"}} src={logo} alt="Logo"></img></h1>
                     <div style={{ marginLeft: isOpen ? "70px" : "0px" }} className="bar">
                         <FaBars onClick={menu} />
-                    </div>
+                    </div> 
                 </div>
 
                 {

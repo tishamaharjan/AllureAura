@@ -238,7 +238,7 @@ class _HistoryState extends State<History> {
               Text('Appointment ID ${appointment.id}'),
               Text('Appointment booked by ${appointment.username}'),
               Text('Appointment of ${appointment.chosenService}'),
-              Text('ChosenService: ${appointment.chosenServiceType}'),
+              Text('Chosen Service: ${appointment.chosenServiceType}'),
               Text('Chosen Service Price: ${appointment.chosenServicePrice}'),
               Text('Service: ${appointment.service}'),
               Text('Home Service Price: ${appointment.homeServicePrice}'),

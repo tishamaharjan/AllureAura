@@ -1,11 +1,11 @@
 const express = require ('express');
-const body_parser = require("body-parser");
+const body_parser = require('body-parser');
 
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
-const userRouter = require("./routers/user.router");
-const appRouter = require("./routers/appointment.router");
+const userRouter = require('./routers/user.router');
+const appRouter = require('./routers/appointment.router');
 const adminRouter = require('./routers/admin.router');
 const staffRouter = require('./routers/staff.router');
 

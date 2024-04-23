@@ -136,7 +136,6 @@ const StaffProfile = () => {
 					<i><h1>Staff Profile</h1></i>
 				</div>
 
-				{error && <div>{error}</div>}
 				<div style ={styles.buttomContainer}>
 					<div style={{ height: "100%", padding: "10px" }}>
 						{DisplayData.map((staff,index) => (

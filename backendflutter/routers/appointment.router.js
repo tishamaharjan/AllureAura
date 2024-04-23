@@ -16,6 +16,10 @@ approuter.use(cors(corsOptions));
 approuter.post('/appointment', appointmentController.create);
 approuter.get('/appointment', appointmentController.getAll);
 
+//API for waiting list
+approuter.post('/waitinglist', appointmentController.createWaitingList);
+approuter.get('/waitinglist', appointmentController.getAllWait);
+
 //API for booking course
 approuter.post('/course', appointmentController.createCourse);
 approuter.get('/course', appointmentController.getAllCourse);

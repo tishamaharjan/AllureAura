@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../components/button";
 import axios from 'axios';
-import { toast } from "react-toastify";
+
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Home = () => {
@@ -24,7 +26,7 @@ const Home = () => {
 
     const completeAppointment = async (appointmentId) => {
         try {
-            toast.error(`http://localhost:3005/appointment/complete`);
+            toast.success('Appointment marked as completed!');
             await axios.post(`http://localhost:3005/appointment/complete`, { id: appointmentId });
 
 
@@ -39,11 +41,9 @@ const Home = () => {
 
     const cancelAppointment = async (appointmentId) => {
         try {
-            toast.error(`http://localhost:3005/appointment/${appointmentId}/complete`);
-            await axios.delete(`http://localhost:3005/appointment/${appointmentId}/complete`);
             toast.success('Appointment deleted successfully!');
-
-            
+            await axios.delete(`http://localhost:3005/appointment/${appointmentId}/complete`);
+                 
         } catch (error) {
             toast.error('Error cancelling appointment:', error);
         }
@@ -89,6 +89,18 @@ const Home = () => {
                 </div>
 
             </div>
+
+            <ToastContainer
+				position="top-right" // Set the position of the toasts (can be changed)
+				autoClose={5000} // Time in milliseconds for the toast to automatically close
+				hideProgressBar={false} // Display a progress bar on the toast
+				newestOnTop={true} // Display the newest toast at the top
+				closeOnClick // Close the toast on click
+				rtl={false} // Support for right-to-left text
+				pauseOnFocusLoss // Pause the toast on focus loss
+				draggable // Allow the toast to be draggable
+				pauseOnHover // Pause the toast on hover
+			/>
 
         </div>
     );

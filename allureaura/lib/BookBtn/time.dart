@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'package:allureaura/appointmentDetails.dart';
+import 'package:allureaura/config.dart';
 import 'package:allureaura/invoice.dart';
 import 'package:flutter/material.dart';
 import 'package:allureaura/buttommenu.dart';
+
+import 'package:http/http.dart' as http;
 
 class Time extends StatefulWidget {
   final Appointment appointment;
@@ -51,26 +55,7 @@ class _TimeState extends State<Time> {
         setState(() {
           ChosenTime = '${picked.hour}:${picked.minute}';
         });
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Invoice(
-              appointment: Appointment(
-                username: Username,
-                chosenService: ChosenService,
-                chosenServiceType: ChosenServiceType,
-                chosenServicePrice: ChosenServicePrice,
-                service: Service,
-                homeServicePrice: HomeServicePrice,
-                urgentBook: UrgentBook,
-                urgentBookPrice: UrgentBookPrice,
-                selectedDate: SelectedDate,
-                calDate: CalDate,
-                chosenTime: ChosenTime,
-              ),
-            ),
-          ),
-        );
+        checkAppointmentAvailability();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -79,6 +64,93 @@ class _TimeState extends State<Time> {
         );
       }
     }
+  }
+
+  Future<void> checkAppointmentAvailability() async {
+    final response = await http.get(Uri.parse(appointment));
+
+    if (response.statusCode == 200) {
+      final appointments = json.decode(response.body);
+      bool isAppointmentAvailable = true;
+
+      for (var appointmentJson in appointments) {
+        final appointment = Appointment.fromJson(appointmentJson);
+        if (appointment.selectedDate != null &&
+            appointment.chosenTime != null) {
+          if (appointment.selectedDate == SelectedDate &&
+              appointment.chosenTime == ChosenTime) {
+            isAppointmentAvailable = false;
+            break;
+          }
+        }
+      }
+
+      if (isAppointmentAvailable) {
+        navigateToInvoice();
+      } else {
+        saveToWaitingList();
+      }
+    } else {
+      print('Failed to check appointment availability');
+    }
+  }
+
+  Future<void> saveToWaitingList() async {
+    final appointmentData = {
+      'username': Username,
+      'chosenService': ChosenService,
+      'chosenServiceType': ChosenServiceType,
+      'chosenServicePrice': ChosenServicePrice,
+      'service': Service,
+      'homeServicePrice': HomeServicePrice,
+      'urgentBook': UrgentBook,
+      'urgentBookPrice': UrgentBookPrice,
+      'selectedDate': SelectedDate.toIso8601String(),
+      'calDate': CalDate.toIso8601String(),
+      'chosenTime': ChosenTime,
+    };
+
+    final response = await http.post(
+      Uri.parse(waitinglist),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(appointmentData),
+    );
+
+    if (response.statusCode == 201) {
+      // Appointment added to the waiting list successfully
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+              'The selected time is not available. You have been added to the waiting list.'),
+        ),
+      );
+    } else {
+      // Handle error
+      print('Failed to add appointment to waiting list');
+    }
+  }
+
+  void navigateToInvoice() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Invoice(
+          appointment: Appointment(
+            username: Username,
+            chosenService: ChosenService,
+            chosenServiceType: ChosenServiceType,
+            chosenServicePrice: ChosenServicePrice,
+            service: Service,
+            homeServicePrice: HomeServicePrice,
+            urgentBook: UrgentBook,
+            urgentBookPrice: UrgentBookPrice,
+            selectedDate: SelectedDate,
+            calDate: CalDate,
+            chosenTime: ChosenTime,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget build(BuildContext context) {

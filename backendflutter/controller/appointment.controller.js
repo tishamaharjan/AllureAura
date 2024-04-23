@@ -21,6 +21,26 @@ const create = async (req, res, next) => {
     }
 };
 
+const createWaitingList = async (req, res, next) => {
+    try {
+        // Extracting appointment details
+        const { username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice } = req.body;
+        console.log('Received request data:', req.body);
+        const waitingList = await appointmentService.createWaitingList(username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice);
+
+        res.status(201).json({ status: true, success: 'Waitinglist created successfully' });
+    }
+
+    catch (error) {
+        console.error('Error creating waitinglist:', error);
+        res.status(500).json({
+            status: false,
+            message: 'Error creating waitinglist',
+            error,
+        });
+    }
+};
+
 // Creating new course appointment
 const createCourse = async (req, res, next) => {
     try {
@@ -42,6 +62,7 @@ const createCourse = async (req, res, next) => {
     }
 };
 
+
 // Get all appointments from database
 const getAll = async (req, res) => {
     try {
@@ -52,6 +73,21 @@ const getAll = async (req, res) => {
         res.status(500).json({
             status: false,
             message: 'Error retrieving appointments',
+            error,
+        });
+    }
+};
+
+// Get all waitinglist from database
+const getAllWait = async (req, res) => {
+    try {
+        const waitingList = await appointmentService.getAllWaitingList();
+        res.json(waitingList);
+    } catch (error) {
+        console.error('Error fetching all waitinglist:', error);
+        res.status(500).json({
+            status: false,
+            message: 'Error retrieving waiting list',
             error,
         });
     }
@@ -105,35 +141,6 @@ const getAllCompleted = async (req, res, next) => {
     }
 }
 
-
-
-// // Update an appointment using ID
-// const update = async (req, res) => {
-//     try {
-//         const appointmentId = req.params.id;
-//         const updatedData = req.body;
-
-//         const updatedAppointment = await appointmentService.findByIdAndUpdate(
-//             appointmentId,
-//             updatedData,
-//             { new: true }
-//         );
-//         if (!updatedAppointment) {
-//             return res.status(404).json({ message: 'Appointment not found' });
-//         }
-
-//         res.status(200).json({
-//             message: 'Appointment updated successfully',
-//             appointment: updatedAppointment,
-//         });
-//     } catch (error) {
-//         res.status(500).json({
-//             message: 'Error updating appointment',
-//             error,
-//         });
-//     }
-// };
-
 // Delete the appointment using ID
 const remove = async (req, res) => {
     try {
@@ -154,11 +161,12 @@ const remove = async (req, res) => {
 
 module.exports = {
     create,
+    createWaitingList,
     createCourse,
     getAll,
+    getAllWait,
     getAllCourse,
     completeAppointment,
     getAllCompleted,
-    // update,
     remove,
 };

@@ -1,4 +1,4 @@
-const { appointmentModel, courseModel, completedAppointmentModel} = require('../model/appointment.model'); 
+const { appointmentModel, waitingModel, courseModel, completedAppointmentModel} = require('../model/appointment.model'); 
  
 class appointmentService {
     // Creating a new appointment
@@ -8,6 +8,17 @@ class appointmentService {
             const appointment = new appointmentModel({username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice});
             
             return await appointment.save(); 
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    // Creating a waiting list
+    static async createWaitingList(username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice) {
+        try {
+            const waiting = new waitingModel({username,chosenService,chosenServiceType,chosenServicePrice,service,homeServicePrice,urgentBook,urgentBookPrice,selectedDate,chosenTime,totalPrice});
+            
+            return await waiting.save(); 
         } catch (err) {
             throw err;
         }
@@ -26,13 +37,24 @@ class appointmentService {
     }
 
 
-    // Gettnig all appointments from database
+    // Getting all appointments from database
     static async getAllAppointments() {
         try {
             const appointments = await appointmentModel.find();
             return appointments;
         } catch (err) {
             console.error('Error fetching all appointments:', error);
+            throw err;
+        }
+    }
+
+    // Getting all waiting list from database
+    static async getAllWaitingList() {
+        try {
+            const waitings = await waitingModel.find();
+            return waitings;
+        } catch (err) {
+            console.error('Error fetching all waitinglist:', error);
             throw err;
         }
     }
