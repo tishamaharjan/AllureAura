@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const { appointmentModel, completedAppointmentModel } = require('../model/appointment.model'); 
 
 describe('Appointment Model', () => {
+    let mongooseConnection;
+
     beforeAll(async () => {
-        await mongoose.connect('mongodb://127.0.0.1:27017/testdb', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        mongooseConnection = await mongoose.createConnection('mongodb://127.0.0.1:27017/testdb', {});
     });
 
     afterAll(async () => {
-        await mongoose.connection.close();
+        await mongooseConnection.close();
+        
     });
 
     it('Should create an appointment', async () => {
@@ -24,7 +24,7 @@ describe('Appointment Model', () => {
             urgentBook: 'Yes',
             urgentBookPrice: 500,
             selectedDate: '2024-04-10',
-            chosenService: '11:00 AM',
+            chosenTime: '11:00 AM',
             totalPrice: 2500,
         };
 
@@ -35,15 +35,15 @@ describe('Appointment Model', () => {
 });
 
 describe('Completed Appointment Model', () => {
+    let mongooseConnection;
+
     beforeAll(async () => {
-        await mongoose.connect('mongodb://127.0.0.1:27017/testdb', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        mongooseConnection = await mongoose.createConnection('mongodb://127.0.0.1:27017/testdb', {});
     });
 
     afterAll(async () => {
-        await mongoose.connection.close();
+        await mongooseConnection.close();
+        await mongoose.disconnect();
     });
 
     it('Should add completed appointment', async () => {

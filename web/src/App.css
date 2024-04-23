@@ -1,0 +1,71 @@
+*{
+  margin:0;
+  padding:0;
+  text-decoration: none;
+}
+
+.Container{
+  display: flex;
+  width: 100%;
+}
+
+main{
+  width: 80%;
+  padding: 22px;
+  margin-left: 20%;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #7743DB;
+  color: white;
+  height: 100vh;
+  width: 10%;
+  transition: all 0.5s;
+  overflow-y: auto;
+}
+
+.top{
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.logo{
+  font-size: 25px;
+}
+
+.bar{
+  display: flex;
+  font-size: 25px;
+  margin-left: 45px;
+}
+
+.link{
+  display: flex;
+  color: white;
+  padding: 10px 15px;
+  gap: 18px;
+  transition: all 0.5s;
+}
+
+.link:hover{
+  background-color: #D0A2F7;
+  transition: all 0.5s;
+}
+
+.active{
+  background: #D0A2F7;
+}
+
+.icon, .link_text{
+  font-size: 19px;
+}
+
+/* css of home page */
+.maindiv{
+  height: 100vh;
+  width: 100%;
+}

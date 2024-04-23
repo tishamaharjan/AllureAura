@@ -156,7 +156,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                               ),
                             ),
                             Text(
-                              '  Chosen Service:\n  ${widget.appointment.chosenCourseService}\n',
+                              '  Chosen Course:\n  ${widget.appointment.chosenCourseService}\n',
                               style: TextStyle(
                                 fontFamily: 'Arial',
                                 fontSize: 18,
