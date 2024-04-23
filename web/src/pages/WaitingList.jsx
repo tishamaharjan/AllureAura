@@ -39,7 +39,6 @@ const WaitingList = () => {
                             <p><strong>Urgent Booking:</strong> {waiting.urgentBookPrice}</p>
                             <p><strong>Selected Date:</strong> {new Date(waiting.selectedDate).toLocaleDateString()}</p>
                             <p><strong>Chosen Time:</strong> {waiting.chosenTime}</p>
-                            <p><strong>Total Price:</strong> {waiting.totalPrice}</p>
                         </div>
                     ))}
 

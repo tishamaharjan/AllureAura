@@ -224,6 +224,7 @@ class _LoginState extends State<Login> {
                         ),
                         child: TextFormField(
                           controller: passwordL,
+                          obscureText: true, //for hiding password
                           decoration: InputDecoration(
                             hintText: "Password",
                             hintStyle: TextStyle(

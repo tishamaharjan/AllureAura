@@ -359,6 +359,7 @@ class _RegisterState extends State<Register> {
                       ),
                       child: TextFormField(
                         controller: password,
+                        obscureText: true,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
                           hintText: "Password",
