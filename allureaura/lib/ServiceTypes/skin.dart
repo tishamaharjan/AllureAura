@@ -26,7 +26,6 @@ class _SkinState extends State<Skin> {
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

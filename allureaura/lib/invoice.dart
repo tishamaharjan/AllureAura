@@ -57,7 +57,7 @@ class _InvoiceState extends State<Invoice> {
         "totalPrice": TotalPrice,
       };
       print('2  Here');
-      //Making HTTP POST request to the backend API
+      //Making HTTP POST request to the backend API of appointment
       final response = await http.post(
         Uri.parse(appointment),
         headers: {"Content-Type": "application/json"},
@@ -71,7 +71,6 @@ class _InvoiceState extends State<Invoice> {
       print('Yeta  Here');
 
       if (response.statusCode == 201) {
-        print('Yeta Yeta Here');
         print("Appointment details saved successfully");
         Navigator.pushReplacement(
           context,
@@ -87,9 +86,6 @@ class _InvoiceState extends State<Invoice> {
                   )),
         );
       } else {
-        //final errorResponse = jsonDecode(response.body);
-        print('Failed to book appointment.');
-
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -129,7 +125,6 @@ class _InvoiceState extends State<Invoice> {
 
   Widget build(BuildContext context) {
     TotalPrice = ChosenServicePrice + HomeServicePrice + UrgentBookPrice;
-    print('Selected Time: ${widget.appointment.chosenTime}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

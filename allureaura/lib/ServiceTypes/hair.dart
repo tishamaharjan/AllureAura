@@ -26,7 +26,6 @@ class _HairState extends State<Hair> {
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

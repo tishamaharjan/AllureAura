@@ -34,11 +34,6 @@ class _UrgentState extends State<Urgent> {
   }
 
   Widget build(BuildContext context) {
-    print('Urgent Chosen ServiceType: ${widget.appointment.chosenServiceType}');
-    print('Chosen ServicePrice: ${widget.appointment.chosenServicePrice}');
-    print('Chosen Service: ${widget.appointment.chosenService}');
-    print('Service: ${widget.appointment.service}');
-    print('Home Service Price: ${widget.appointment.homeServicePrice}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

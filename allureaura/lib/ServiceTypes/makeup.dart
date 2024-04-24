@@ -26,8 +26,6 @@ class _MakeupState extends State<Makeup> {
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.chosenService}');
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

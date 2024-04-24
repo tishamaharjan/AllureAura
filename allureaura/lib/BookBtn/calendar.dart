@@ -39,19 +39,11 @@ class _DateState extends State<Date> {
     UrgentBookPrice = widget.appointment.urgentBookPrice ?? 0;
     selectedDate = DateTime.now();
     calDate = DateTime.now()
-        .add((Duration(days: 3))); // Adding 3 days in current date
+        .add((Duration(days: 3))); // Adding 3 days in present date
   }
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'Calender Chosen Service Type: ${widget.appointment.chosenServiceType}');
-    print('Chosen Service Price: ${widget.appointment.chosenServicePrice}');
-    print('Urgent Book: ${widget.appointment.urgentBook}');
-    print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
-    print('Chosen Service: ${widget.appointment.chosenService}');
-    print('Service: ${widget.appointment.service}');
-    print('Home Service Price: ${widget.appointment.homeServicePrice}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

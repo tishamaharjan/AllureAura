@@ -27,7 +27,7 @@ class _HistoryState extends State<History> {
     loadPreferences();
 
     username = widget.appointment.username;
-    appointmentsFuture = fetchAppointments(); // Initialize the future
+    appointmentsFuture = fetchAppointments();
     completedAppointmentsFuture = fetchCompletedAppointments();
   }
 
@@ -90,7 +90,6 @@ class _HistoryState extends State<History> {
 
   Future<void> submitFeedback(Appointment appointment, String feedback) async {
     try {
-      // Creating a new appointment object with the new value 'feedback'
       Appointment updatedAppointment = Appointment(
         id: appointment.id,
         username: appointment.username,
@@ -104,10 +103,11 @@ class _HistoryState extends State<History> {
         selectedDate: appointment.selectedDate,
         chosenTime: appointment.chosenTime,
         totalPrice: appointment.totalPrice,
-        feedback: feedback, // Including feedback in the appointment object
+        feedback:
+            feedback, // Including feedback in the appointment object for saving in database
       );
 
-      // Sending request to update the completed appointment
+      // Sending post request to update the completed appointment
       final response = await http.post(
         Uri.parse(complete),
         headers: {"Content-Type": "application/json"},
@@ -117,9 +117,10 @@ class _HistoryState extends State<History> {
 
       if (response.statusCode == 200) {
         setState(() {
-          appointmentsFuture = fetchAppointments(); // Refresh appointments list
+          appointmentsFuture =
+              fetchAppointments(); // Refreshing appointments list
           completedAppointmentsFuture =
-              fetchCompletedAppointments(); // Refresh completed appointments list
+              fetchCompletedAppointments(); // Refreshing completed appointments list
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -137,8 +138,6 @@ class _HistoryState extends State<History> {
         );
       }
     } catch (error) {
-      // Handle error
-      print('Error submitting feedback: $error');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error submitting feedback: $error'),
@@ -183,7 +182,6 @@ class _HistoryState extends State<History> {
       setState(() {
         appointmentsFuture = fetchAppointments();
       });
-      // Show a success notification
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Appointment canceled.')),
       );
@@ -207,7 +205,7 @@ class _HistoryState extends State<History> {
       physics: NeverScrollableScrollPhysics(),
       itemCount: filteredAppointments.length,
       itemBuilder: (context, index) {
-        // Display each appointment in a card
+        // Displaying each appointment in a card
         Appointment appointment = filteredAppointments[index];
         return Container(
           margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -356,12 +354,11 @@ class _HistoryState extends State<History> {
                   future: appointmentsFuture,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      // Loading indicator while waiting for data
+                      // Loading indicator while waiting for details
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (snapshot.hasData) {
-                      // If data is available, building the list of appointments
                       List<Appointment> appointments = snapshot.data!;
                       return buildAppointmentList(appointments);
                     } else {
@@ -386,12 +383,11 @@ class _HistoryState extends State<History> {
                   future: completedAppointmentsFuture,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      // Loading indicator while waiting for data
+                      // Loading indicator while waiting for details
                       return const Center(child: CircularProgressIndicator());
                     } else if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     } else if (snapshot.hasData) {
-                      // If data is available, building the list of completed appointments
                       List<Appointment> appointments = snapshot.data!;
                       return buildCompletedAppointmentList(appointments);
                     } else {

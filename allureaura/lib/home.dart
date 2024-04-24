@@ -46,7 +46,6 @@ class _HomeState extends State<Home> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else if (snapshot.hasData) {
-          // Use the data to initialize the Home widget
           String token = snapshot.data!['token']!;
           String username = snapshot.data!['username']!;
           return buildHomeScreen(context, token, username);

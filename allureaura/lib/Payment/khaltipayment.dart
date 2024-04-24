@@ -17,7 +17,7 @@ class _KPaymentState extends State<KPayment> {
         amount: amount,
         productIdentity: 'product_id',
         productName: 'Product Name',
-        mobile: 'Your phone number',
+        mobile: '123',
       ),
       preferences: [
         PaymentPreference.khalti,

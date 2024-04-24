@@ -26,7 +26,6 @@ class _NailState extends State<Nail> {
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

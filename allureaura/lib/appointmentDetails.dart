@@ -66,7 +66,6 @@ class Appointment {
     );
   }
 
-  // Defining the toJson method
   Map<String, dynamic> toJson() {
     return {
       'id': id,

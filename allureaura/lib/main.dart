@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   Khalti.init(
-    publicKey: 'test_public_key_5a827c020a334e4a8da08dabb911d7fc',
+    publicKey: 'test_public_key_cf3797bf05ce4cd48e26ee75a62a1186',
   );
 
   try {
@@ -20,7 +20,7 @@ void main() async {
 
     runApp(
       KhaltiScope(
-        publicKey: 'test_public_key_5a827c020a334e4a8da08dabb911d7fc',
+        publicKey: 'test_public_key_cf3797bf05ce4cd48e26ee75a62a1186',
         builder: (context, navigatorKey) {
           return MyApp(
             token: token,

@@ -47,8 +47,7 @@ class _TimeState extends State<Time> {
   Future<void> selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime:
-          TimeOfDay(hour: 10, minute: 0), // Set initial time to 10:00 AM
+      initialTime: TimeOfDay(hour: 10, minute: 0),
     );
     if (picked != null) {
       if (picked.hour >= 10 && picked.hour < 18) {
@@ -117,16 +116,18 @@ class _TimeState extends State<Time> {
     );
 
     if (response.statusCode == 201) {
-      // Appointment added to the waiting list successfully
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              'The selected time is not available. You have been added to the waiting list.'),
+              'The selected time is not available. You have been added to the waiting list. Please choose another time too.'),
         ),
       );
     } else {
-      // Handle error
-      print('Failed to add appointment to waiting list');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error while booking appointment. Please book again.'),
+        ),
+      );
     }
   }
 
@@ -154,15 +155,6 @@ class _TimeState extends State<Time> {
   }
 
   Widget build(BuildContext context) {
-    print('Time choosedServiceType: ${widget.appointment.chosenServiceType}');
-    print('ChosenServicePrice: ${widget.appointment.chosenServicePrice}');
-    print('Urgent Book: ${widget.appointment.urgentBook}');
-    print('Urgent Book Price: ${widget.appointment.urgentBookPrice}');
-    print('ChosenService: ${widget.appointment.chosenService}');
-    print('Service: ${widget.appointment.service}');
-    print('Home Service Price: ${widget.appointment.homeServicePrice}');
-    print('Selected Date: ${widget.appointment.selectedDate}');
-    print('Calender Date: ${widget.appointment.calDate}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

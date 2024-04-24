@@ -26,7 +26,6 @@ class _ManiPediState extends State<ManiPedi> {
   }
 
   Widget build(BuildContext context) {
-    print('ChoosedService: ${widget.appointment.chosenService}');
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

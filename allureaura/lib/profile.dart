@@ -52,13 +52,9 @@ class _ProfileState extends State<Profile> {
             responseData.containsKey('user')) {
           final Map<String, dynamic> userDetails = responseData['user'];
 
-          // Set controllers' initial values
           _fullnameController.text = userDetails['fullname'] ?? '';
           _emailController.text = userDetails['email'] ?? '';
           _phoneController.text = userDetails['phonenumber'] ?? '';
-
-          // If you need to refresh the screen (e.g. setState to trigger an update),
-          // you can use `setState` here
         } else {
           debugPrint('Unexpected response format.');
         }
@@ -89,7 +85,7 @@ class _ProfileState extends State<Profile> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Changes Saved'),
+            title: Text('Changes Saved!'),
             content: Text('The details have been updated successfully.'),
             actions: [
               TextButton(
@@ -102,8 +98,7 @@ class _ProfileState extends State<Profile> {
       );
       debugPrint('User details updated successfully.');
 
-      // Optionally, you can fetch the updated data and update the state
-      fetchAndSetUserDetails(); // Uncomment this line to refresh after update
+      fetchAndSetUserDetails();
     } else {
       showDialog(
         context: context,
@@ -164,11 +159,8 @@ class _ProfileState extends State<Profile> {
     );
 
     if (response.statusCode == 200) {
-      // User details updated successfully
       debugPrint('User details updated successfully.');
-      // Optionally, refresh the user details after update
     } else {
-      // Handle error appropriately
       debugPrint(
         'Failed to update user details: ${response.statusCode} - ${response.body}',
       );
@@ -199,9 +191,7 @@ class _ProfileState extends State<Profile> {
                     color: Color(0xFF7743DB),
                   ),
                 ),
-
                 SizedBox(height: 20.0),
-
                 TextFormField(
                   controller: _fullnameController,
                   decoration: InputDecoration(
@@ -226,8 +216,6 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 SizedBox(height: 20),
-
-                // Save changes button
                 ElevatedButton(
                   onPressed: saveUserDetails,
                   style: ButtonStyle(
@@ -236,9 +224,7 @@ class _ProfileState extends State<Profile> {
                   child: Text('Save Changes',
                       style: TextStyle(color: Colors.white, fontSize: 17)),
                 ),
-
                 SizedBox(height: 20),
-
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacement(

@@ -35,20 +35,17 @@ class _CourseInvoiceState extends State<CourseInvoice> {
 
   Future<void> courseDetail() async {
     try {
-      print('1 Course Here');
       var courseDetails = {
         "username": widget.appointment.username,
         "chosenService": widget.appointment.chosenCourseService,
         "totalPrice": widget.appointment.totalCoursePrice,
       };
-      print('2 Course Here');
-      //Making HTTP POST request to the backend API
+      //Making HTTP POST request to the backend API of course
       final response = await http.post(
         Uri.parse(course),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(courseDetails),
       );
-      print('3 Course Here');
       var jsonResponse = jsonDecode(response.body);
       debugPrint('Response status code: ${response.statusCode}');
       debugPrint('Response body: ${response.body}');
@@ -56,8 +53,6 @@ class _CourseInvoiceState extends State<CourseInvoice> {
       print('Yeta Course Course Here');
 
       if (response.statusCode == 201) {
-        print('Yeta Course Here');
-        print("Appointment details saved successfully");
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -72,7 +67,6 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                   )),
         );
       } else {
-        //final errorResponse = jsonDecode(response.body);
         print('Failed to book appointment.');
 
         showDialog(
@@ -144,7 +138,6 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                       width: MediaQuery.of(context).size.width * 0.80,
                       color: Color(0xFFF1EAFF),
                       child: Column(
-                          //mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -186,8 +179,7 @@ class _CourseInvoiceState extends State<CourseInvoice> {
                         child: Text(
                           'Pay',
                           style: TextStyle(
-                            color:
-                                Color(0xFF7743DB), // Text color of the button
+                            color: Color(0xFF7743DB),
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
